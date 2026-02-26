@@ -182,7 +182,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-charcoal font-sans overflow-x-hidden selection:bg-hermes/20 selection:text-charcoal">
       {/* Navbar */}
-      <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${isVisible ? 'translate-y-0' : '-translate-y-full'} ${isScrolled ? 'bg-white/95 backdrop-blur-md border-b border-gray-100 py-4' : 'bg-transparent py-6'}`}>
+      <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${isVisible ? 'translate-y-0' : '-translate-y-full'} ${isScrolled ? 'bg-white/95 backdrop-blur-md py-4' : 'bg-transparent py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <div className="flex items-center gap-2 cursor-pointer">
             <span className="font-bold text-2xl tracking-tight text-[#0A0B0D]">Krypto<span className="text-hermes">Kompass</span></span>
@@ -229,11 +229,11 @@ export default function App() {
             <img 
               src="https://s1.directupload.eu/images/260226/reta6zp3.webp" 
               alt="KryptoKompass Hero" 
-              className="w-full h-full object-contain object-center opacity-80"
+              className="w-full h-full object-contain object-center opacity-100"
               referrerPolicy="no-referrer"
             />
             {/* Cleaner gradient overlay for readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/60 to-white/10 md:from-white/95 md:via-white/40 md:to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/20 to-transparent md:from-white/80 md:via-white/20 md:to-transparent"></div>
           </div>
         </div>
         
@@ -246,9 +246,9 @@ export default function App() {
             </FadeIn>
             
             <FadeIn blur scale delay={0.2}>
-              <h1 className="text-6xl md:text-8xl font-extrabold tracking-tight leading-[1.05] mb-8 text-[#0A0B0D]">
+              <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] mb-8 text-[#0A0B0D]">
                 Krypto-Welt noch <br />
-                <span className="text-hermes">Neuland für dich?</span>
+                <span className="text-hermes font-serif italic font-medium tracking-normal">Neuland für dich?</span>
               </h1>
             </FadeIn>
 
@@ -312,8 +312,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <FadeIn direction="right" blur>
-              <h2 className="text-4xl md:text-6xl font-extrabold mb-8 tracking-tight leading-tight text-[#0A0B0D]">
-                Wir leben im <span className="text-hermes">21. Jahrhundert.</span> <br />
+              <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-none text-[#0A0B0D]">
+                Wir leben im <span className="text-hermes font-serif italic font-medium tracking-normal">21. Jahrhundert.</span> <br />
                 Das ist die Zukunft.
               </h2>
               <div className="space-y-6 text-lg md:text-xl text-gray-600 leading-relaxed">
@@ -351,8 +351,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <FadeIn scale blur>
-              <h2 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight text-[#0A0B0D]">
-                Dein Lehrplan für <span className="text-hermes">maximale Souveränität.</span>
+              <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tighter text-[#0A0B0D]">
+                Dein Lehrplan für <span className="text-hermes font-serif italic font-medium tracking-normal">maximale Souveränität.</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
@@ -397,8 +397,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <FadeIn direction="right" blur>
-              <h2 className="text-4xl md:text-6xl font-extrabold mb-8 tracking-tight leading-tight text-[#0A0B0D]">
-                Dein <span className="text-hermes">Kompass</span> im <br /> Krypto-Dschungel.
+              <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-tight text-[#0A0B0D]">
+                Dein <span className="text-hermes font-serif italic font-medium tracking-normal">Kompass</span> im <br /> Krypto-Dschungel.
               </h2>
               <p className="text-2xl text-gray-800 font-bold mb-8">
                 Präzise Orientierung in einem volatilen Markt.
@@ -435,8 +435,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <FadeIn direction="right" scale>
-              <h2 className="text-4xl md:text-6xl font-extrabold mb-8 tracking-tight leading-tight text-[#0A0B0D]">
-                Lernen auf <br /> <span className="text-hermes">höchstem Niveau.</span>
+              <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-tight text-[#0A0B0D]">
+                Lernen auf <br /> <span className="text-hermes font-serif italic font-medium tracking-normal">höchstem Niveau.</span>
               </h2>
               <p className="text-xl text-gray-600 mb-10 font-medium leading-relaxed">
                 Vergiss unübersichtliche Chats. Unsere Plattform ist dein digitales Klassenzimmer. Strukturiert, modern und jederzeit erreichbar.
@@ -458,7 +458,7 @@ export default function App() {
             
             <FadeIn direction="left" blur delay={0.4} className="relative">
               <img 
-                src="https://s1.directupload.eu/images/260226/oczij49d.jpg" 
+                src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_2zg6kRsQgLvpBAc5mmGVtMaqZi0%2Fhf_20260225_203429_79b3f6a2-76c7-445b-990c-d52bcc2be55c.jpeg&w=1280&q=85" 
                 alt="KryptoKompass Plattform" 
                 className="w-full h-auto rounded-3xl shadow-2xl"
                 referrerPolicy="no-referrer"
@@ -473,8 +473,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-4xl mx-auto mb-20">
             <FadeIn direction="down" blur>
-              <h2 className="text-4xl md:text-7xl font-extrabold mb-8 tracking-tight leading-tight text-[#0A0B0D]">
-                Warum du dich uns <br /> <span className="text-hermes">anschließen solltest.</span>
+              <h2 className="text-4xl md:text-7xl font-black mb-8 tracking-tighter leading-tight text-[#0A0B0D]">
+                Warum du dich uns <br /> <span className="text-hermes font-serif italic font-medium tracking-normal">anschließen solltest.</span>
               </h2>
             </FadeIn>
           </div>
@@ -509,7 +509,7 @@ export default function App() {
             <FadeIn direction="left" blur delay={0.4} className="relative">
               <div className="absolute inset-0 bg-gradient-to-tr from-hermes/30 to-transparent rounded-[3rem] transform rotate-3 scale-105 -z-10"></div>
               <img 
-                src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2070&auto=format&fit=crop" 
+                src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_2zg6kRsQgLvpBAc5mmGVtMaqZi0%2Fhf_20260226_164129_05e8c8e0-3a31-40c8-b045-2c3976c890da.jpeg&w=1280&q=85" 
                 alt="Crypto Future Vision" 
                 className="rounded-[3rem] shadow-2xl object-cover aspect-square md:aspect-[4/3] w-full hover:scale-[1.02] transition-transform duration-700"
                 referrerPolicy="no-referrer"
@@ -528,8 +528,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <FadeIn scale blur>
-              <h2 className="text-4xl md:text-7xl font-extrabold mb-8 tracking-tight leading-tight text-white">
-                Werde Teil der <br /> <span className="text-hermes">Zukunft.</span>
+              <h2 className="text-4xl md:text-7xl font-black mb-8 tracking-tighter leading-tight text-white">
+                Werde Teil der <br /> <span className="text-hermes font-serif italic font-medium tracking-normal">Zukunft.</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.2} direction="up">
