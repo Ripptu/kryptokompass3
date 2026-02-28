@@ -191,13 +191,13 @@ export default function App() {
           <nav className="hidden md:flex items-center gap-8 font-medium text-sm text-gray-600">
             <a href="#features" className="hover:text-hermes transition-colors">Leistungen</a>
             <a href="#mindset" className="hover:text-hermes transition-colors">Mindset</a>
-            <a href="#pricing" className="hover:text-hermes transition-colors">Preise</a>
+            <a href="#faq" className="hover:text-hermes transition-colors">FAQ</a>
           </nav>
 
           <div className="hidden md:flex items-center gap-6">
             <a href="#login" className="text-sm font-medium text-gray-600 hover:text-charcoal transition-colors">Mitglieder-Login</a>
-            <a href="#pricing" className="bg-hermes text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-hermes-dark transition-all duration-300">
-              Jetzt beitreten
+            <a href="#start" className="bg-hermes text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-hermes-dark transition-all duration-300">
+              Jetzt kostenlos starten
             </a>
           </div>
 
@@ -213,10 +213,10 @@ export default function App() {
           <nav className="flex flex-col gap-6 text-lg font-medium">
             <a href="#features" onClick={() => setMobileMenuOpen(false)}>Leistungen</a>
             <a href="#mindset" onClick={() => setMobileMenuOpen(false)}>Mindset</a>
-            <a href="#pricing" onClick={() => setMobileMenuOpen(false)}>Preise</a>
+            <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
             <div className="h-px bg-gray-100 w-full my-2"></div>
             <a href="#login" onClick={() => setMobileMenuOpen(false)}>Mitglieder-Login</a>
-            <a href="#pricing" onClick={() => setMobileMenuOpen(false)} className="bg-hermes text-white px-6 py-3 rounded-lg text-center mt-4 font-bold">Jetzt beitreten</a>
+            <a href="#start" onClick={() => setMobileMenuOpen(false)} className="bg-hermes text-white px-6 py-3 rounded-lg text-center mt-4 font-bold">Jetzt kostenlos starten</a>
           </nav>
         </div>
       )}
@@ -241,26 +241,37 @@ export default function App() {
           <div className="max-w-2xl">
             <FadeIn blur scale className="mb-6">
               <span className="inline-flex items-center gap-2 text-hermes font-bold text-sm uppercase tracking-wider">
-                Die Nr. 1 Krypto-Schule in DACH
+                Die führende Krypto-Schule im D-A-CH Raum
               </span>
             </FadeIn>
             
             <FadeIn blur scale delay={0.2}>
               <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] mb-8 text-[#0A0B0D]">
-                Krypto-Welt noch <br />
-                <span className="text-hermes font-serif italic font-medium tracking-normal">Neuland für dich?</span>
+                Kryptowährungen verstehen. <br />
+                <span className="text-hermes font-serif italic font-medium tracking-normal">Strategisch investieren.</span> <br />
+                Souverän handeln.
               </h1>
             </FadeIn>
 
             <FadeIn delay={0.4} direction="right">
-              <p className="text-xl md:text-2xl text-gray-600 font-medium leading-relaxed mb-10 max-w-xl">
-                Wir navigieren dich sicher durch den digitalen Dschungel. Erst lernen, dann investieren.
-              </p>
+              <div className="text-xl md:text-2xl text-gray-600 font-medium leading-relaxed mb-10 max-w-xl space-y-4">
+                <p>
+                  Krypto ist Neuland für dich?<br />
+                  Oder willst du dein Portfolio endlich professionell aufbauen?
+                </p>
+                <p>
+                  Willkommen bei Krypto-Kompass – deiner strukturierten Krypto-Akademie für nachhaltigen Vermögensaufbau.
+                </p>
+                <p className="font-bold text-charcoal">
+                  Erst verstehen. Dann investieren.<br />
+                  Mit System. Ohne Hype. Ohne Blindflug.
+                </p>
+              </div>
             </FadeIn>
 
             <FadeIn delay={0.6} className="flex flex-col sm:flex-row items-center justify-start gap-4">
-              <a href="#pricing" className="w-full sm:w-auto bg-hermes text-white px-10 py-4 rounded-lg text-lg font-bold hover:bg-hermes-dark transition-all duration-300 text-center">
-                Kostenlos starten
+              <a href="#start" className="w-full sm:w-auto bg-hermes text-white px-10 py-4 rounded-lg text-lg font-bold hover:bg-hermes-dark transition-all duration-300 text-center">
+                Jetzt kostenlos starten
               </a>
               <a href="#features" className="w-full sm:w-auto bg-white text-charcoal border border-gray-200 px-10 py-4 rounded-lg text-lg font-bold hover:border-hermes hover:text-hermes transition-all duration-300 text-center">
                 Unser Konzept
@@ -289,19 +300,19 @@ export default function App() {
               <div className="w-12 h-12 rounded-xl bg-hermes/10 border border-hermes/20 flex items-center justify-center">
                 <X className="text-hermes" size={24} />
               </div>
-              <span className="text-white font-black tracking-widest text-sm md:text-base">KEIN COACHING</span>
+              <span className="text-white font-black tracking-widest text-sm md:text-base">KEIN COACHING-ZIRKUS</span>
             </FadeIn>
             <FadeIn direction="right" delay={0.1} className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-hermes/10 border border-hermes/20 flex items-center justify-center">
                 <X className="text-hermes" size={24} />
               </div>
-              <span className="text-white font-black tracking-widest text-sm md:text-base">KEIN INVESTMENT</span>
+              <span className="text-white font-black tracking-widest text-sm md:text-base">KEINE INVESTMENTANNAHME</span>
             </FadeIn>
             <FadeIn direction="right" delay={0.2} className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl bg-hermes/10 border border-hermes/20 flex items-center justify-center">
                 <X className="text-hermes" size={24} />
               </div>
-              <span className="text-white font-black tracking-widest text-sm md:text-base">KEIN SCAM</span>
+              <span className="text-white font-black tracking-widest text-sm md:text-base">KEIN "WIR HANDELN FÜR DICH"</span>
             </FadeIn>
           </div>
         </div>
@@ -313,18 +324,28 @@ export default function App() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <FadeIn direction="right" blur>
               <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-none text-[#0A0B0D]">
-                Wir leben im <span className="text-hermes font-serif italic font-medium tracking-normal">21. Jahrhundert.</span> <br />
-                Das ist die Zukunft.
+                Warum <span className="text-hermes font-serif italic font-medium tracking-normal">Krypto-Kompass?</span>
               </h2>
               <div className="space-y-6 text-lg md:text-xl text-gray-600 leading-relaxed">
                 <p>
-                  Die Welt verändert sich rasant, doch die meisten Menschen trauen sich nicht, den ersten Schritt in Richtung Kryptowährungen zu machen. Warum? Weil sie keine Ahnung haben, wie es funktioniert, was man braucht und wem man vertrauen kann.
+                  Der Kryptomarkt wächst rasant.<br />
+                  Bitcoin, Ethereum, Solana, Layer-2, DeFi, Tokenisierung – täglich entstehen neue Chancen.
                 </p>
+                <div>
+                  <p className="mb-2">Doch die meisten Menschen:</p>
+                  <ul className="list-disc pl-6 space-y-1">
+                    <li>wissen nicht, wo sie anfangen sollen</li>
+                    <li>verstehen Wallets nicht</li>
+                    <li>haben Angst vor Fehlern</li>
+                    <li>fallen auf Hype oder Panik herein</li>
+                  </ul>
+                </div>
                 <p className="font-bold text-charcoal">
-                  Genau hier setzt KryptoKompass an. Wir nehmen dich an die Hand.
+                  Genau hier setzt Krypto-Kompass an.
                 </p>
                 <p>
-                  Wir sind keine Investment-Berater und wir wollen nicht dein Geld verwalten. Wir sind Lehrer. Wir erklären dir die Technologie, die Wallets und die Strategien, damit DU die Kontrolle über deine finanzielle Zukunft übernimmst.
+                  Wir nehmen dich Schritt für Schritt mit –<br />
+                  vom absoluten Anfänger bis zum strategischen Investor.
                 </p>
               </div>
             </FadeIn>
@@ -362,30 +383,73 @@ export default function App() {
             </FadeIn>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 icon: <BrainCircuit className="w-10 h-10 text-hermes" />,
-                title: "Grundlagen-Mastery",
-                desc: "Was ist eine Blockchain? Wie funktionieren Transaktionen? Wir erklären es so, dass es jeder versteht."
-              },
-              {
-                icon: <Users className="w-10 h-10 text-hermes" />,
-                title: "Community-Support",
-                desc: "Du bist nie allein. Unsere Gemeinschaft hilft sich gegenseitig bei jeder Hürde und jeder Frage."
+                title: "1. Grundlagen-Mastery",
+                subtitle: "Kryptowährungen verstehen",
+                bullets: [
+                  "Was ist eine Blockchain wirklich?",
+                  "Wie funktionieren Transaktionen?",
+                  "Was ist ein Wallet – und wie sicherst du es richtig?",
+                  "Was unterscheidet Bitcoin von Altcoins?"
+                ],
+                desc: "Wir erklären komplexe Technologie einfach, strukturiert und praxisnah."
               },
               {
                 icon: <BarChart3 className="w-10 h-10 text-hermes" />,
-                title: "Analyse & Strategie",
-                desc: "Lerne, wie man Projekte bewertet und Trends erkennt, ohne auf Hype oder Scam hereinzufallen."
+                title: "2. Portfolio & Investment-Strategie",
+                subtitle: "Langfristiger Vermögensaufbau statt kurzfristiger Nervenkitzel.",
+                bullets: [
+                  "Wie du ein solides Krypto-Portfolio aufbaust",
+                  "Wie eine DCA-Strategie funktioniert",
+                  "Wie du Projekte objektiv analysierst",
+                  "Wie du Risiko richtig einschätzt",
+                  "Warum Marktzyklen entscheidend sind"
+                ],
+                desc: "Kein Raten. Kein Hinterherlaufen. Sondern eine klare Strategie."
+              },
+              {
+                icon: <PlaySquare className="w-10 h-10 text-hermes" />,
+                title: "3. Analyse & Marktverständnis",
+                subtitle: "Verstehe, warum sich Märkte bewegen.",
+                bullets: [
+                  "Fundamentalanalyse von Kryptowährungen",
+                  "Tokenomics verstehen",
+                  "Trends erkennen, bevor sie Mainstream werden",
+                  "Hype von Substanz unterscheiden"
+                ],
+                desc: "Du lernst zu denken wie ein Investor – nicht wie ein Spekulant."
+              },
+              {
+                icon: <Users className="w-10 h-10 text-hermes" />,
+                title: "4. Community & Support",
+                subtitle: "Über 500+ Mitglieder navigieren bereits mit uns durch den Kryptomarkt.",
+                bullets: [
+                  "Strukturierte Plattform statt Chaos-Chat",
+                  "Direkter Austausch & Gemeinsames Lernen",
+                  "Regelmäßige Markt-Updates",
+                  "Exklusive Deep-Dive Sessions"
+                ],
+                desc: "Du bist nicht allein."
               }
             ].map((feature, idx) => (
-              <FadeIn key={idx} delay={0.2 * idx} direction="up" scale className="bg-white/40 backdrop-blur-2xl p-10 rounded-[2.5rem] border border-white/60 shadow-[0_20px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.08)] hover:-translate-y-3 transition-all duration-500 group">
-                <div className="w-20 h-20 bg-white/80 rounded-2xl flex items-center justify-center mb-8 shadow-sm border border-white group-hover:scale-110 transition-transform duration-500">
+              <FadeIn key={idx} delay={0.2 * idx} direction="up" scale className="bg-white/40 backdrop-blur-2xl p-8 rounded-[2.5rem] border border-white/60 shadow-[0_20px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.08)] hover:-translate-y-3 transition-all duration-500 group flex flex-col">
+                <div className="w-16 h-16 bg-white/80 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-white group-hover:scale-110 transition-transform duration-500">
                   {feature.icon}
                 </div>
-                <h3 className="text-2xl font-bold mb-5 text-charcoal">{feature.title}</h3>
-                <p className="text-gray-600 leading-relaxed text-lg">{feature.desc}</p>
+                <h3 className="text-xl font-bold mb-2 text-charcoal">{feature.title}</h3>
+                <p className="text-hermes font-medium text-sm mb-4">{feature.subtitle}</p>
+                <ul className="space-y-2 mb-6 flex-grow">
+                  {feature.bullets.map((bullet, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
+                      <div className="w-1.5 h-1.5 rounded-full bg-hermes mt-1.5 flex-shrink-0"></div>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-charcoal font-bold text-sm pt-4 border-t border-gray-100">{feature.desc}</p>
               </FadeIn>
             ))}
           </div>
@@ -398,17 +462,20 @@ export default function App() {
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <FadeIn direction="right" blur>
               <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-tight text-[#0A0B0D]">
-                Dein <span className="text-hermes font-serif italic font-medium tracking-normal">Kompass</span> im <br /> Krypto-Dschungel.
+                Keine <span className="text-hermes font-serif italic font-medium tracking-normal">Versprechen.</span> <br /> Keine Fremdverwaltung.
               </h2>
               <p className="text-2xl text-gray-800 font-bold mb-8">
-                Präzise Orientierung in einem volatilen Markt.
+                Wir sind eine Krypto-Schule.
               </p>
               <div className="space-y-6 text-lg text-gray-600 leading-relaxed mb-10">
                 <p>
-                  Egal ob Bitcoin, Ethereum oder Solana – wir geben dir die Werkzeuge an die Hand, um die Richtung des Marktes zu verstehen. Kein Raten mehr, keine Angst vor dem Unbekannten.
+                  Wir sind keine Vermögensverwalter. Wir sind keine Signalgruppe. Und wir sind ganz sicher kein Scam.
                 </p>
                 <p>
-                  Unsere Anleitungen sind darauf ausgelegt, dir Sicherheit zu geben. Wir zeigen dir nicht nur, wo es langgeht, sondern warum der Markt sich so bewegt, wie er es tut.
+                  Unsere Aufgabe ist es, dir das Wissen, die Strategien und die Werkzeuge zu geben, damit du selbstbestimmt in Kryptowährungen investieren kannst.
+                </p>
+                <p className="font-bold text-charcoal">
+                  Denn das größte Risiko im Kryptomarkt ist nicht Volatilität – sondern Unwissenheit.
                 </p>
               </div>
               <div className="flex items-center gap-6">
@@ -436,22 +503,22 @@ export default function App() {
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <FadeIn direction="right" scale>
               <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-tight text-[#0A0B0D]">
-                Lernen auf <br /> <span className="text-hermes font-serif italic font-medium tracking-normal">höchstem Niveau.</span>
+                Deine digitale <br /> <span className="text-hermes font-serif italic font-medium tracking-normal">Krypto-Akademie.</span>
               </h2>
               <p className="text-xl text-gray-600 mb-10 font-medium leading-relaxed">
-                Vergiss unübersichtliche Chats. Unsere Plattform ist dein digitales Klassenzimmer. Strukturiert, modern und jederzeit erreichbar.
+                Vergiss unübersichtliche Telegram-Gruppen. Unsere Plattform ist dein digitales Klassenzimmer: Modern. Klar. Verständlich. Jederzeit verfügbar.
               </p>
               <div className="space-y-4 mb-12">
-                {["Exklusive Video-Tutorials", "Tägliche Markt-Updates", "Interaktive Lernmodule", "Direkter Community-Austausch"].map((item, i) => (
+                {["Strukturierte Video-Module", "Interaktive Lerninhalte", "Markt-Updates", "Schritt-für-Schritt Anleitungen", "Wallet-Sicherheits-Guide", "Portfolio-Frameworks"].map((item, i) => (
                   <div key={i} className="flex items-center gap-4 text-lg font-bold text-charcoal">
-                    <div className="w-6 h-6 rounded-full bg-hermes flex items-center justify-center">
+                    <div className="w-6 h-6 rounded-full bg-hermes flex items-center justify-center flex-shrink-0">
                       <ArrowRight size={14} className="text-white" />
                     </div>
                     {item}
                   </div>
                 ))}
               </div>
-              <a href="#pricing" className="inline-flex items-center gap-3 bg-hermes text-white px-10 py-4 rounded-lg text-lg font-bold hover:bg-hermes-dark transition-all duration-300">
+              <a href="#start" className="inline-flex items-center gap-3 bg-hermes text-white px-10 py-4 rounded-lg text-lg font-bold hover:bg-hermes-dark transition-all duration-300">
                 Plattform entdecken <ArrowRight size={22} />
               </a>
             </FadeIn>
@@ -519,83 +586,129 @@ export default function App() {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-24 md:py-40 bg-charcoal px-6 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20">
-          <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-hermes/40 blur-[150px]"></div>
-        </div>
-
+      {/* Target Audience Section */}
+      <section className="py-24 md:py-32 bg-charcoal px-6 overflow-hidden relative">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <FadeIn scale blur>
-              <h2 className="text-4xl md:text-7xl font-black mb-8 tracking-tighter leading-tight text-white">
-                Werde Teil der <br /> <span className="text-hermes font-serif italic font-medium tracking-normal">Zukunft.</span>
+              <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-white">
+                Für wen ist <span className="text-hermes font-serif italic font-medium tracking-normal">Krypto-Kompass</span> geeignet?
               </h2>
             </FadeIn>
-            <FadeIn delay={0.2} direction="up">
+            <FadeIn delay={0.2}>
               <p className="text-xl text-gray-400 leading-relaxed">
-                Wähle den Zugang, der zu deinen Zielen passt. Alle Pläne beinhalten den vollen Zugriff auf unsere Lernplattform und die Community.
+                Wir suchen Menschen, die Verantwortung für ihre finanzielle Zukunft übernehmen wollen.
               </p>
             </FadeIn>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-            {/* Essential */}
-            <FadeIn delay={0.2} direction="up" className="bg-white/5 backdrop-blur-md rounded-[3rem] p-10 border border-white/10 flex flex-col hover:bg-white/10 transition-all duration-500">
-              <h3 className="text-2xl font-bold mb-2 text-white">Basis-Zugang</h3>
-              <div className="mb-8">
-                <span className="text-5xl font-black text-white">€199</span>
-                <span className="text-gray-400 text-lg block mt-1 font-medium">Einmalig / Monat</span>
-              </div>
-              <ul className="space-y-4 mb-10 flex-grow text-gray-300">
-                <li className="flex items-center gap-3"><ArrowRight size={16} className="text-hermes" /> Voller Plattform-Zugriff</li>
-                <li className="flex items-center gap-3"><ArrowRight size={16} className="text-hermes" /> Community-Austausch</li>
-                <li className="flex items-center gap-3"><ArrowRight size={16} className="text-hermes" /> Alle Grundlagen-Module</li>
-              </ul>
-              <button className="w-full py-4 rounded-lg bg-[#0A0B0D] text-white font-bold text-lg hover:bg-hermes transition-all duration-300">
-                Jetzt starten
-              </button>
-            </FadeIn>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            {[
+              {
+                title: "Absolute Anfänger",
+                desc: "ohne Vorkenntnisse"
+              },
+              {
+                title: "Investoren",
+                desc: "die strategisch aufbauen wollen"
+              },
+              {
+                title: "Trader",
+                desc: "die Marktverständnis vertiefen möchten"
+              },
+              {
+                title: "Menschen",
+                desc: "die finanzielle Eigenverantwortung übernehmen wollen"
+              }
+            ].map((audience, idx) => (
+              <FadeIn key={idx} delay={0.1 * idx} direction="up" className="bg-white/5 backdrop-blur-md p-8 rounded-[2rem] border border-white/10 text-center">
+                <div className="w-10 h-10 rounded-full bg-hermes/20 flex items-center justify-center mx-auto mb-4">
+                  <ArrowRight className="text-hermes" size={16} />
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-white">{audience.title}</h3>
+                <p className="text-gray-400 text-sm">{audience.desc}</p>
+              </FadeIn>
+            ))}
+          </div>
+          
+          <FadeIn direction="up" delay={0.4} className="max-w-3xl mx-auto text-center bg-white/5 border border-white/10 p-8 rounded-3xl">
+            <p className="text-xl text-gray-300 mb-4">
+              Wenn du einfach nur schnelle Gewinne suchst –<br />
+              <span className="text-white font-bold">sind wir nicht die richtige Adresse.</span>
+            </p>
+            <p className="text-xl text-hermes font-bold">
+              Wenn du nachhaltiges Wissen willst –<br />
+              bist du hier genau richtig.
+            </p>
+          </FadeIn>
+        </div>
+      </section>
 
-            {/* Mastery (Highlighted) */}
-            <FadeIn delay={0.4} scale className="bg-white rounded-[3rem] p-12 border-4 border-hermes shadow-[0_0_60px_rgba(243,112,33,0.3)] relative lg:scale-110 z-10 flex flex-col">
-              <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-hermes text-white px-6 py-2 rounded-full text-sm font-black uppercase tracking-widest shadow-xl">
-                Meistgewählt
-              </div>
-              <h3 className="text-2xl font-bold mb-2 text-charcoal mt-2">Jahres-Mastery</h3>
-              <div className="mb-8">
-                <span className="text-6xl font-black text-charcoal">€1.290</span>
-                <span className="text-gray-500 text-lg block mt-1 font-medium">Pro Jahr</span>
-              </div>
-              <p className="text-hermes font-black mb-8 bg-hermes/10 py-3 px-6 rounded-2xl text-center">Spare über 45% gegenüber Einzelmonaten</p>
-              <ul className="space-y-4 mb-10 flex-grow text-gray-600 font-medium">
-                <li className="flex items-center gap-3"><ArrowRight size={16} className="text-hermes" /> Alles aus dem Basis-Zugang</li>
-                <li className="flex items-center gap-3"><ArrowRight size={16} className="text-hermes" /> Exklusive Deep-Dive Webinare</li>
-                <li className="flex items-center gap-3"><ArrowRight size={16} className="text-hermes" /> Priorisierter Support</li>
-                <li className="flex items-center gap-3"><ArrowRight size={16} className="text-hermes" /> Zertifikat nach Abschluss</li>
-              </ul>
-              <button className="w-full py-4 rounded-lg bg-hermes text-white font-bold text-xl hover:bg-hermes-dark transition-all duration-300">
-                Meisterschaft wählen
-              </button>
-            </FadeIn>
-
-            {/* Elite */}
-            <FadeIn delay={0.6} direction="up" className="bg-white/5 backdrop-blur-md rounded-[3rem] p-10 border border-white/10 flex flex-col hover:bg-white/10 transition-all duration-500">
-              <h3 className="text-2xl font-bold mb-2 text-white">Halbjahres-Fokus</h3>
-              <div className="mb-8">
-                <span className="text-5xl font-black text-white">€790</span>
-                <span className="text-gray-400 text-lg block mt-1 font-medium">6 Monate</span>
-              </div>
-              <ul className="space-y-4 mb-10 flex-grow text-gray-300">
-                <li className="flex items-center gap-3"><ArrowRight size={16} className="text-hermes" /> Voller Plattform-Zugriff</li>
-                <li className="flex items-center gap-3"><ArrowRight size={16} className="text-hermes" /> Community-Austausch</li>
-                <li className="flex items-center gap-3"><ArrowRight size={16} className="text-hermes" /> Bonus: Wallet-Sicherheits-Guide</li>
-              </ul>
-              <button className="w-full py-4 rounded-lg border-2 border-white/20 text-white font-bold text-lg hover:bg-white hover:text-charcoal transition-all duration-300">
-                Fokus-Plan wählen
-              </button>
+      {/* FAQ Section */}
+      <section id="faq" className="py-24 md:py-32 px-6 bg-white overflow-hidden">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-20">
+            <FadeIn scale blur>
+              <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[#0A0B0D]">
+                Häufige <span className="text-hermes font-serif italic font-medium tracking-normal">Fragen.</span>
+              </h2>
             </FadeIn>
           </div>
+
+          <div className="space-y-6">
+            <FadeIn direction="up">
+              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+                <h3 className="text-xl font-bold text-charcoal mb-4">Ist der Einstieg wirklich für Anfänger geeignet?</h3>
+                <p className="text-gray-600 leading-relaxed">Ja, absolut. Unser Curriculum ist so aufgebaut, dass wir bei den absoluten Grundlagen beginnen. Du brauchst kein Vorwissen, nur die Bereitschaft zu lernen.</p>
+              </div>
+            </FadeIn>
+            <FadeIn direction="up" delay={0.1}>
+              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+                <h3 className="text-xl font-bold text-charcoal mb-4">Wie schnell sehe ich Ergebnisse?</h3>
+                <p className="text-gray-600 leading-relaxed">Krypto-Kompass ist kein "Schnell-reich-werden"-Programm. Es geht um nachhaltigen Wissensaufbau. Die ersten Aha-Momente hast du bereits nach den ersten Modulen, aber strategisches Investieren ist ein langfristiger Prozess.</p>
+              </div>
+            </FadeIn>
+            <FadeIn direction="up" delay={0.2}>
+              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
+                <h3 className="text-xl font-bold text-charcoal mb-4">Brauche ich viel Startkapital?</h3>
+                <p className="text-gray-600 leading-relaxed">Nein. Es geht im ersten Schritt darum, den Markt zu verstehen. Du kannst das erlernte Wissen später mit jedem beliebigen Betrag anwenden.</p>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section (Replaces Pricing) */}
+      <section id="start" className="py-24 md:py-40 bg-charcoal px-6 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20">
+          <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-hermes/40 blur-[150px]"></div>
+        </div>
+
+        <div className="max-w-4xl mx-auto relative z-10 text-center">
+          <FadeIn scale blur>
+            <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-tight text-white">
+              Bereit für den <br /> <span className="text-hermes font-serif italic font-medium tracking-normal">nächsten Schritt?</span>
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.2} direction="up">
+            <p className="text-xl text-gray-400 leading-relaxed mb-12 max-w-2xl mx-auto">
+              Sichere dir jetzt deinen kostenlosen Zugang und beginne deine Reise zu mehr Souveränität und Marktverständnis im Krypto-Space.
+            </p>
+          </FadeIn>
+          <FadeIn delay={0.4} direction="up">
+            <form className="flex flex-col sm:flex-row gap-4 justify-center max-w-xl mx-auto">
+              <input 
+                type="email" 
+                placeholder="Deine E-Mail Adresse" 
+                className="px-6 py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-hermes flex-grow"
+                required
+              />
+              <button type="submit" className="bg-hermes text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-hermes-dark transition-all duration-300 whitespace-nowrap">
+                Kostenlos starten
+              </button>
+            </form>
+            <p className="text-sm text-gray-500 mt-6">Kein Spam. Jederzeit abmeldbar.</p>
+          </FadeIn>
         </div>
       </section>
 
