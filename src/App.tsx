@@ -229,11 +229,11 @@ export default function App() {
             <img 
               src="https://s1.directupload.eu/images/260226/reta6zp3.webp" 
               alt="KryptoKompass Hero" 
-              className="w-full h-full object-contain object-center opacity-100"
+              className="hidden md:block w-full h-full object-contain object-right opacity-100"
               referrerPolicy="no-referrer"
             />
             {/* Cleaner gradient overlay for readability */}
-            <div className="absolute inset-0 bg-gradient-to-r from-white/60 via-white/20 to-transparent md:from-white/80 md:via-white/20 md:to-transparent"></div>
+            <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-white/60 via-white/20 to-transparent md:from-white/80 md:via-white/20 md:to-transparent"></div>
           </div>
         </div>
         
@@ -246,24 +246,24 @@ export default function App() {
             </FadeIn>
             
             <FadeIn blur scale delay={0.2}>
-              <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-[0.85] mb-8 text-[#0A0B0D]">
-                Kryptowährungen verstehen. <br />
-                <span className="text-hermes font-serif italic font-medium tracking-normal">Strategisch investieren.</span> <br />
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[1.1] md:leading-[0.9] mb-6 text-[#0A0B0D] break-words sm:break-normal">
+                Kryptowährungen verstehen. <br className="hidden sm:block" />
+                <span className="text-hermes font-serif italic font-medium tracking-normal">Strategisch investieren.</span> <br className="hidden sm:block" />
                 Souverän handeln.
               </h1>
             </FadeIn>
 
             <FadeIn delay={0.4} direction="right">
-              <div className="text-xl md:text-2xl text-gray-600 font-medium leading-relaxed mb-10 max-w-xl space-y-4">
+              <div className="text-base sm:text-lg md:text-xl text-gray-600 font-medium leading-relaxed mb-8 max-w-xl space-y-4">
                 <p>
-                  Krypto ist Neuland für dich?<br />
+                  Krypto ist Neuland für dich?<br className="hidden sm:block" />
                   Oder willst du dein Portfolio endlich professionell aufbauen?
                 </p>
                 <p>
                   Willkommen bei Krypto-Kompass – deiner strukturierten Krypto-Akademie für nachhaltigen Vermögensaufbau.
                 </p>
                 <p className="font-bold text-charcoal">
-                  Erst verstehen. Dann investieren.<br />
+                  Erst verstehen. Dann investieren.<br className="hidden sm:block" />
                   Mit System. Ohne Hype. Ohne Blindflug.
                 </p>
               </div>
@@ -295,24 +295,24 @@ export default function App() {
       {/* Trust Bar */}
       <section className="py-10 bg-charcoal relative z-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap justify-center md:justify-between items-center gap-8 md:gap-4">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-between items-start sm:items-center gap-6 md:gap-4">
             <FadeIn direction="right" className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-hermes/10 border border-hermes/20 flex items-center justify-center">
-                <X className="text-hermes" size={24} />
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-hermes/10 border border-hermes/20 flex items-center justify-center flex-shrink-0">
+                <X className="text-hermes" size={20} />
               </div>
-              <span className="text-white font-black tracking-widest text-sm md:text-base">KEIN COACHING-ZIRKUS</span>
+              <span className="text-white font-black tracking-widest text-xs sm:text-sm md:text-base">KEIN COACHING-ZIRKUS</span>
             </FadeIn>
             <FadeIn direction="right" delay={0.1} className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-hermes/10 border border-hermes/20 flex items-center justify-center">
-                <X className="text-hermes" size={24} />
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-hermes/10 border border-hermes/20 flex items-center justify-center flex-shrink-0">
+                <X className="text-hermes" size={20} />
               </div>
-              <span className="text-white font-black tracking-widest text-sm md:text-base">KEINE INVESTMENTANNAHME</span>
+              <span className="text-white font-black tracking-widest text-xs sm:text-sm md:text-base">KEINE INVESTMENTANNAHME</span>
             </FadeIn>
             <FadeIn direction="right" delay={0.2} className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-hermes/10 border border-hermes/20 flex items-center justify-center">
-                <X className="text-hermes" size={24} />
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-hermes/10 border border-hermes/20 flex items-center justify-center flex-shrink-0">
+                <X className="text-hermes" size={20} />
               </div>
-              <span className="text-white font-black tracking-widest text-sm md:text-base">KEIN "WIR HANDELN FÜR DICH"</span>
+              <span className="text-white font-black tracking-widest text-xs sm:text-sm md:text-base">KEIN "WIR HANDELN FÜR DICH"</span>
             </FadeIn>
           </div>
         </div>
@@ -323,10 +323,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <FadeIn direction="right" blur>
-              <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-none text-[#0A0B0D]">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-[1.1] md:leading-none text-[#0A0B0D] break-words sm:break-normal">
                 Warum <span className="text-hermes font-serif italic font-medium tracking-normal">Krypto-Kompass?</span>
               </h2>
-              <div className="space-y-6 text-lg md:text-xl text-gray-600 leading-relaxed">
+              <div className="space-y-6 text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed">
                 <p>
                   Der Kryptomarkt wächst rasant.<br />
                   Bitcoin, Ethereum, Solana, Layer-2, DeFi, Tokenisierung – täglich entstehen neue Chancen.
@@ -372,12 +372,12 @@ export default function App() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <FadeIn scale blur>
-              <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tighter text-[#0A0B0D]">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 tracking-tighter leading-[1.1] md:leading-none text-[#0A0B0D] break-words sm:break-normal">
                 Dein Lehrplan für <span className="text-hermes font-serif italic font-medium tracking-normal">maximale Souveränität.</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
                 Vom absoluten Anfänger zum Krypto-Kenner. Wir begleiten dich Schritt für Schritt durch den Dschungel.
               </p>
             </FadeIn>
@@ -461,13 +461,13 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <FadeIn direction="right" blur>
-              <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-tight text-[#0A0B0D]">
-                Keine <span className="text-hermes font-serif italic font-medium tracking-normal">Versprechen.</span> <br /> Keine Fremdverwaltung.
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-[1.1] md:leading-tight text-[#0A0B0D] break-words sm:break-normal">
+                Keine <span className="text-hermes font-serif italic font-medium tracking-normal">Versprechen.</span> <br className="hidden sm:block" /> Keine Fremdverwaltung.
               </h2>
-              <p className="text-2xl text-gray-800 font-bold mb-8">
+              <p className="text-xl sm:text-2xl text-gray-800 font-bold mb-8">
                 Wir sind eine Krypto-Schule.
               </p>
-              <div className="space-y-6 text-lg text-gray-600 leading-relaxed mb-10">
+              <div className="space-y-6 text-base sm:text-lg text-gray-600 leading-relaxed mb-10">
                 <p>
                   Wir sind keine Vermögensverwalter. Wir sind keine Signalgruppe. Und wir sind ganz sicher kein Scam.
                 </p>
@@ -502,10 +502,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <FadeIn direction="right" scale>
-              <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-tight text-[#0A0B0D]">
-                Deine digitale <br /> <span className="text-hermes font-serif italic font-medium tracking-normal">Krypto-Akademie.</span>
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-[1.1] md:leading-tight text-[#0A0B0D] break-words sm:break-normal">
+                Deine digitale <br className="hidden sm:block" /> <span className="text-hermes font-serif italic font-medium tracking-normal">Krypto-Akademie.</span>
               </h2>
-              <p className="text-xl text-gray-600 mb-10 font-medium leading-relaxed">
+              <p className="text-lg sm:text-xl text-gray-600 mb-10 font-medium leading-relaxed">
                 Vergiss unübersichtliche Telegram-Gruppen. Unsere Plattform ist dein digitales Klassenzimmer: Modern. Klar. Verständlich. Jederzeit verfügbar.
               </p>
               <div className="space-y-4 mb-12">
@@ -540,8 +540,8 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-4xl mx-auto mb-20">
             <FadeIn direction="down" blur>
-              <h2 className="text-4xl md:text-7xl font-black mb-8 tracking-tighter leading-tight text-[#0A0B0D]">
-                Warum du dich uns <br /> <span className="text-hermes font-serif italic font-medium tracking-normal">anschließen solltest.</span>
+              <h2 className="text-3xl sm:text-4xl md:text-7xl font-black mb-8 tracking-tighter leading-[1.1] md:leading-tight text-[#0A0B0D] break-words sm:break-normal">
+                Warum du dich uns <br className="hidden sm:block" /> <span className="text-hermes font-serif italic font-medium tracking-normal">anschließen solltest.</span>
               </h2>
             </FadeIn>
           </div>
@@ -557,10 +557,10 @@ export default function App() {
               <FadeIn delay={0.4} scale>
                 <div className="bg-hermes/5 p-10 rounded-[3rem] border border-hermes/10 shadow-sm relative overflow-hidden group">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-hermes/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
-                  <p className="leading-relaxed mb-8 italic text-charcoal font-bold text-2xl">
+                  <p className="leading-relaxed mb-8 italic text-charcoal font-bold text-xl sm:text-2xl">
                     "Erhalte kostenlos und ohne Investment-Zwang Anleitungen, wie du dich im Kryptodschungel zurechtfindest."
                   </p>
-                  <p className="leading-relaxed text-hermes font-black text-xl">
+                  <p className="leading-relaxed text-hermes font-black text-lg sm:text-xl">
                     Lass dich von uns an die Hand nehmen. Wir geben dir die genaue Richtung und Anleitung, wie auch du von Krypto profitieren kannst.
                   </p>
                 </div>
@@ -591,12 +591,12 @@ export default function App() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <FadeIn scale blur>
-              <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-white">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-6 tracking-tighter text-white break-words sm:break-normal">
                 Für wen ist <span className="text-hermes font-serif italic font-medium tracking-normal">Krypto-Kompass</span> geeignet?
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p className="text-xl text-gray-400 leading-relaxed">
+              <p className="text-lg sm:text-xl text-gray-400 leading-relaxed">
                 Wir suchen Menschen, die Verantwortung für ihre finanzielle Zukunft übernehmen wollen.
               </p>
             </FadeIn>
@@ -649,7 +649,7 @@ export default function App() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-20">
             <FadeIn scale blur>
-              <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[#0A0B0D]">
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[#0A0B0D] break-words sm:break-normal">
                 Häufige <span className="text-hermes font-serif italic font-medium tracking-normal">Fragen.</span>
               </h2>
             </FadeIn>
@@ -686,12 +686,12 @@ export default function App() {
 
         <div className="max-w-4xl mx-auto relative z-10 text-center">
           <FadeIn scale blur>
-            <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-tight text-white">
-              Bereit für den <br /> <span className="text-hermes font-serif italic font-medium tracking-normal">nächsten Schritt?</span>
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-tight text-white break-words sm:break-normal">
+              Bereit für den <br className="hidden sm:block" /> <span className="text-hermes font-serif italic font-medium tracking-normal">nächsten Schritt?</span>
             </h2>
           </FadeIn>
           <FadeIn delay={0.2} direction="up">
-            <p className="text-xl text-gray-400 leading-relaxed mb-12 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-400 leading-relaxed mb-12 max-w-2xl mx-auto">
               Sichere dir jetzt deinen kostenlosen Zugang und beginne deine Reise zu mehr Souveränität und Marktverständnis im Krypto-Space.
             </p>
           </FadeIn>
