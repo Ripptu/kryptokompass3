@@ -195,7 +195,7 @@ export default function App() {
           </nav>
 
           <div className="hidden md:flex items-center gap-6">
-            <a href="#login" className="text-sm font-medium text-gray-600 hover:text-charcoal transition-colors">Mitglieder-Login</a>
+            <a href="#login" className="text-sm font-medium text-gray-600 hover:text-charcoal transition-colors">Digitales Klassenzimmer</a>
             <a href="#start" className="bg-hermes text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-hermes-dark transition-all duration-300">
               Jetzt kostenlos starten
             </a>
@@ -215,7 +215,7 @@ export default function App() {
             <a href="#mindset" onClick={() => setMobileMenuOpen(false)}>Mindset</a>
             <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
             <div className="h-px bg-gray-100 w-full my-2"></div>
-            <a href="#login" onClick={() => setMobileMenuOpen(false)}>Mitglieder-Login</a>
+            <a href="#login" onClick={() => setMobileMenuOpen(false)}>Digitales Klassenzimmer</a>
             <a href="#start" onClick={() => setMobileMenuOpen(false)} className="bg-hermes text-white px-6 py-3 rounded-lg text-center mt-4 font-bold">Jetzt kostenlos starten</a>
           </nav>
         </div>
