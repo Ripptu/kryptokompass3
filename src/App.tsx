@@ -120,13 +120,13 @@ const InteractiveCompass = () => {
 
         {/* Labels */}
         <div className="absolute top-4 w-10 h-10 md:w-14 md:h-14 drop-shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
-          <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg?v=040" alt="Bitcoin" className="w-full h-full object-contain" />
+          <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" alt="Bitcoin" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
         </div>
         <div className="absolute right-4 w-10 h-10 md:w-14 md:h-14 drop-shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
-          <img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=040" alt="Ethereum" className="w-full h-full object-contain" />
+          <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png" alt="Ethereum" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
         </div>
         <div className="absolute bottom-4 w-10 h-10 md:w-14 md:h-14 drop-shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
-          <img src="https://cryptologos.cc/logos/solana-sol-logo.svg?v=040" alt="Solana" className="w-full h-full object-contain" />
+          <img src="https://assets.coingecko.com/coins/images/4128/large/solana.png" alt="Solana" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
         </div>
         <div className="absolute left-6 font-bold text-4xl md:text-5xl text-charcoal drop-shadow-[0_4px_12px_rgba(0,0,0,0.1)]">?</div>
 
@@ -247,24 +247,18 @@ export default function App() {
             
             <FadeIn blur scale delay={0.2}>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[1.1] md:leading-[0.9] mb-6 text-[#0A0B0D] break-words sm:break-normal">
-                Kryptowährungen verstehen. <br className="hidden sm:block" />
-                <span className="text-hermes font-serif italic font-medium tracking-normal">Strategisch investieren.</span> <br className="hidden sm:block" />
-                Souverän handeln.
+                Dein Wegweiser zur <br className="hidden sm:block" />
+                <span className="text-hermes font-serif italic font-medium tracking-normal">finanziellen Freiheit.</span>
               </h1>
             </FadeIn>
 
             <FadeIn delay={0.4} direction="right">
               <div className="text-base sm:text-lg md:text-xl text-gray-600 font-medium leading-relaxed mb-8 max-w-xl space-y-4">
                 <p>
-                  Krypto ist Neuland für dich?<br className="hidden sm:block" />
-                  Oder willst du dein Portfolio endlich professionell aufbauen?
+                  Der Kryptomarkt bietet historische Chancen. Wir zeigen dir, wie du sie nutzt.
                 </p>
-                <p>
-                  Willkommen bei Krypto-Kompass – deiner strukturierten Krypto-Akademie für nachhaltigen Vermögensaufbau.
-                </p>
-                <p className="font-bold text-charcoal">
-                  Erst verstehen. Dann investieren.<br className="hidden sm:block" />
-                  Mit System. Ohne Hype. Ohne Blindflug.
+                <p className="font-bold text-charcoal text-2xl">
+                  Ohne Vorwissen. Ohne Stress. Mit System.
                 </p>
               </div>
             </FadeIn>
@@ -324,38 +318,27 @@ export default function App() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <FadeIn direction="right" blur>
               <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-[1.1] md:leading-none text-[#0A0B0D] break-words sm:break-normal">
-                Warum <span className="text-hermes font-serif italic font-medium tracking-normal">Krypto-Kompass?</span>
+                Deine Abkürzung zum <span className="text-hermes font-serif italic font-medium tracking-normal">Krypto-Erfolg.</span>
               </h2>
               <div className="space-y-6 text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed">
                 <p>
-                  Der Kryptomarkt wächst rasant.<br />
-                  Bitcoin, Ethereum, Solana, Layer-2, DeFi, Tokenisierung – täglich entstehen neue Chancen.
-                </p>
-                <div>
-                  <p className="mb-2">Doch die meisten Menschen:</p>
-                  <ul className="list-disc pl-6 space-y-1">
-                    <li>wissen nicht, wo sie anfangen sollen</li>
-                    <li>verstehen Wallets nicht</li>
-                    <li>haben Angst vor Fehlern</li>
-                    <li>fallen auf Hype oder Panik herein</li>
-                  </ul>
-                </div>
-                <p className="font-bold text-charcoal">
-                  Genau hier setzt Krypto-Kompass an.
+                  Keine graue Theorie. Keine falschen Versprechen.
                 </p>
                 <p>
-                  Wir nehmen dich Schritt für Schritt mit –<br />
-                  vom absoluten Anfänger bis zum strategischen Investor.
+                  Wir liefern dir <span className="font-bold text-charcoal">100% anwendbare Praxis</span>, damit du sofort durchstarten kannst.
+                </p>
+                <p className="font-black text-hermes text-3xl mt-8">
+                  Dein Vorsprung beginnt hier.
                 </p>
               </div>
             </FadeIn>
             
             <div className="grid grid-cols-2 gap-4">
               <FadeIn delay={0.2} scale blur className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
-                <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?q=80&w=1000&auto=format&fit=crop" alt="Crypto 1" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?q=80&w=1000&auto=format&fit=crop" alt="Crypto 1" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
               </FadeIn>
               <FadeIn delay={0.4} scale blur className="aspect-square rounded-3xl overflow-hidden shadow-2xl mt-12">
-                <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1000&auto=format&fit=crop" alt="Crypto 2" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1000&auto=format&fit=crop" alt="Crypto 2" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
               </FadeIn>
             </div>
           </div>
@@ -373,12 +356,12 @@ export default function App() {
           <div className="text-center max-w-3xl mx-auto mb-20">
             <FadeIn scale blur>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 tracking-tighter leading-[1.1] md:leading-none text-[#0A0B0D] break-words sm:break-normal">
-                Dein Lehrplan für <span className="text-hermes font-serif italic font-medium tracking-normal">maximale Souveränität.</span>
+                Was dich <span className="text-hermes font-serif italic font-medium tracking-normal">erwartet.</span>
               </h2>
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
-                Vom absoluten Anfänger zum Krypto-Kenner. Wir begleiten dich Schritt für Schritt durch den Dschungel.
+                Alles, was du brauchst, um im Kryptomarkt durchzustarten.
               </p>
             </FadeIn>
           </div>
@@ -387,69 +370,31 @@ export default function App() {
             {[
               {
                 icon: <BrainCircuit className="w-10 h-10 text-hermes" />,
-                title: "1. Grundlagen-Mastery",
-                subtitle: "Kryptowährungen verstehen",
-                bullets: [
-                  "Was ist eine Blockchain wirklich?",
-                  "Wie funktionieren Transaktionen?",
-                  "Was ist ein Wallet – und wie sicherst du es richtig?",
-                  "Was unterscheidet Bitcoin von Altcoins?"
-                ],
-                desc: "Wir erklären komplexe Technologie einfach, strukturiert und praxisnah."
+                title: "Klarheit statt Chaos",
+                desc: "Verstehe den Markt in Rekordzeit. Wir filtern den Lärm und zeigen dir, was wirklich zählt."
               },
               {
                 icon: <BarChart3 className="w-10 h-10 text-hermes" />,
-                title: "2. Portfolio & Investment-Strategie",
-                subtitle: "Langfristiger Vermögensaufbau statt kurzfristiger Nervenkitzel.",
-                bullets: [
-                  "Wie du ein solides Krypto-Portfolio aufbaust",
-                  "Wie eine DCA-Strategie funktioniert",
-                  "Wie du Projekte objektiv analysierst",
-                  "Wie du Risiko richtig einschätzt",
-                  "Warum Marktzyklen entscheidend sind"
-                ],
-                desc: "Kein Raten. Kein Hinterherlaufen. Sondern eine klare Strategie."
+                title: "Strategien der Profis",
+                desc: "Investiere mit System, nicht nach Gefühl. Erlerne bewährte Methoden für nachhaltigen Erfolg."
               },
               {
                 icon: <PlaySquare className="w-10 h-10 text-hermes" />,
-                title: "3. Analyse & Marktverständnis",
-                subtitle: "Verstehe, warum sich Märkte bewegen.",
-                bullets: [
-                  "Fundamentalanalyse von Kryptowährungen",
-                  "Tokenomics verstehen",
-                  "Trends erkennen, bevor sie Mainstream werden",
-                  "Hype von Substanz unterscheiden"
-                ],
-                desc: "Du lernst zu denken wie ein Investor – nicht wie ein Spekulant."
+                title: "Insider-Insights",
+                desc: "Erkenne Trends, bevor sie Mainstream werden und positioniere dich frühzeitig."
               },
               {
                 icon: <Users className="w-10 h-10 text-hermes" />,
-                title: "4. Community & Support",
-                subtitle: "Über 500+ Mitglieder navigieren bereits mit uns durch den Kryptomarkt.",
-                bullets: [
-                  "Strukturierte Plattform statt Chaos-Chat",
-                  "Direkter Austausch & Gemeinsames Lernen",
-                  "Regelmäßige Markt-Updates",
-                  "Exklusive Deep-Dive Sessions"
-                ],
-                desc: "Du bist nicht allein."
+                title: "Starke Community",
+                desc: "Profitiere vom Wissen und Netzwerk von über 500+ gleichgesinnten Mitgliedern."
               }
             ].map((feature, idx) => (
               <FadeIn key={idx} delay={0.2 * idx} direction="up" scale className="bg-white/40 backdrop-blur-2xl p-8 rounded-[2.5rem] border border-white/60 shadow-[0_20px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.08)] hover:-translate-y-3 transition-all duration-500 group flex flex-col">
                 <div className="w-16 h-16 bg-white/80 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-white group-hover:scale-110 transition-transform duration-500">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-charcoal">{feature.title}</h3>
-                <p className="text-hermes font-medium text-sm mb-4">{feature.subtitle}</p>
-                <ul className="space-y-2 mb-6 flex-grow">
-                  {feature.bullets.map((bullet, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
-                      <div className="w-1.5 h-1.5 rounded-full bg-hermes mt-1.5 flex-shrink-0"></div>
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-charcoal font-bold text-sm pt-4 border-t border-gray-100">{feature.desc}</p>
+                <h3 className="text-xl font-bold mb-4 text-charcoal">{feature.title}</h3>
+                <p className="text-gray-600 font-medium text-sm flex-grow">{feature.desc}</p>
               </FadeIn>
             ))}
           </div>
@@ -462,27 +407,18 @@ export default function App() {
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <FadeIn direction="right" blur>
               <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-[1.1] md:leading-tight text-[#0A0B0D] break-words sm:break-normal">
-                Keine <span className="text-hermes font-serif italic font-medium tracking-normal">Versprechen.</span> <br className="hidden sm:block" /> Keine Fremdverwaltung.
+                Volle <span className="text-hermes font-serif italic font-medium tracking-normal">Kontrolle.</span>
               </h2>
-              <p className="text-xl sm:text-2xl text-gray-800 font-bold mb-8">
-                Wir sind eine Krypto-Schule.
-              </p>
               <div className="space-y-6 text-base sm:text-lg text-gray-600 leading-relaxed mb-10">
-                <p>
-                  Wir sind keine Vermögensverwalter. Wir sind keine Signalgruppe. Und wir sind ganz sicher kein Scam.
-                </p>
-                <p>
-                  Unsere Aufgabe ist es, dir das Wissen, die Strategien und die Werkzeuge zu geben, damit du selbstbestimmt in Kryptowährungen investieren kannst.
-                </p>
-                <p className="font-bold text-charcoal">
-                  Denn das größte Risiko im Kryptomarkt ist nicht Volatilität – sondern Unwissenheit.
+                <p className="font-bold text-charcoal text-2xl">
+                  Du triffst die Entscheidungen.<br />Wir zeigen dir den Weg.
                 </p>
               </div>
               <div className="flex items-center gap-6">
                 <div className="flex -space-x-4">
                   {[1,2,3,4].map(i => (
                     <div key={i} className="w-12 h-12 rounded-full border-4 border-white bg-gray-200 overflow-hidden shadow-md">
-                      <img src={`https://i.pravatar.cc/100?img=${i+20}`} alt="User" />
+                      <img src={`https://i.pravatar.cc/100?img=${i+20}`} alt="User" referrerPolicy="no-referrer" />
                     </div>
                   ))}
                 </div>
@@ -503,13 +439,13 @@ export default function App() {
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <FadeIn direction="right" scale>
               <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-[1.1] md:leading-tight text-[#0A0B0D] break-words sm:break-normal">
-                Deine digitale <br className="hidden sm:block" /> <span className="text-hermes font-serif italic font-medium tracking-normal">Krypto-Akademie.</span>
+                Alles, was du brauchst, <br className="hidden sm:block" /> <span className="text-hermes font-serif italic font-medium tracking-normal">an einem Ort.</span>
               </h2>
               <p className="text-lg sm:text-xl text-gray-600 mb-10 font-medium leading-relaxed">
-                Vergiss unübersichtliche Telegram-Gruppen. Unsere Plattform ist dein digitales Klassenzimmer: Modern. Klar. Verständlich. Jederzeit verfügbar.
+                Premium-Inhalte, interaktive Tools und eine Community, die dich voranbringt. Starte jetzt und sichere dir deinen Vorsprung.
               </p>
               <div className="space-y-4 mb-12">
-                {["Strukturierte Video-Module", "Interaktive Lerninhalte", "Markt-Updates", "Schritt-für-Schritt Anleitungen", "Wallet-Sicherheits-Guide", "Portfolio-Frameworks"].map((item, i) => (
+                {["Exklusive Video-Masterclasses", "Live Markt-Analysen", "1-zu-1 Support", "Premium Community Zugang"].map((item, i) => (
                   <div key={i} className="flex items-center gap-4 text-lg font-bold text-charcoal">
                     <div className="w-6 h-6 rounded-full bg-hermes flex items-center justify-center flex-shrink-0">
                       <ArrowRight size={14} className="text-white" />
@@ -519,7 +455,7 @@ export default function App() {
                 ))}
               </div>
               <a href="#start" className="inline-flex items-center gap-3 bg-hermes text-white px-10 py-4 rounded-lg text-lg font-bold hover:bg-hermes-dark transition-all duration-300">
-                Plattform entdecken <ArrowRight size={22} />
+                Jetzt Zugang sichern <ArrowRight size={22} />
               </a>
             </FadeIn>
             
@@ -530,149 +466,6 @@ export default function App() {
                 className="w-full h-auto rounded-3xl shadow-2xl"
                 referrerPolicy="no-referrer"
               />
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Join Us Section */}
-      <section id="mindset" className="py-24 md:py-32 px-6 overflow-hidden bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-4xl mx-auto mb-20">
-            <FadeIn direction="down" blur>
-              <h2 className="text-3xl sm:text-4xl md:text-7xl font-black mb-8 tracking-tighter leading-[1.1] md:leading-tight text-[#0A0B0D] break-words sm:break-normal">
-                Warum du dich uns <br className="hidden sm:block" /> <span className="text-hermes font-serif italic font-medium tracking-normal">anschließen solltest.</span>
-              </h2>
-            </FadeIn>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <div className="space-y-8 text-xl text-gray-600 leading-relaxed">
-              <FadeIn delay={0.2} direction="right">
-                <p>
-                  Wenn du wirklich keine Ahnung hast, was Krypto ist und wie das funktioniert, aber es verstehen und lernen willst, dann bist du bei uns genau richtig.
-                </p>
-              </FadeIn>
-              
-              <FadeIn delay={0.4} scale>
-                <div className="bg-hermes/5 p-10 rounded-[3rem] border border-hermes/10 shadow-sm relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-hermes/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
-                  <p className="leading-relaxed mb-8 italic text-charcoal font-bold text-xl sm:text-2xl">
-                    "Erhalte kostenlos und ohne Investment-Zwang Anleitungen, wie du dich im Kryptodschungel zurechtfindest."
-                  </p>
-                  <p className="leading-relaxed text-hermes font-black text-lg sm:text-xl">
-                    Lass dich von uns an die Hand nehmen. Wir geben dir die genaue Richtung und Anleitung, wie auch du von Krypto profitieren kannst.
-                  </p>
-                </div>
-              </FadeIn>
-
-              <FadeIn delay={0.6} direction="up">
-                <p>
-                  Wir helfen uns gemeinsam in einer starken Gemeinschaft. KryptoKompass erklärt dir alles Schritt für Schritt, damit du sicher in die Zukunft starten kannst.
-                </p>
-              </FadeIn>
-            </div>
-
-            <FadeIn direction="left" blur delay={0.4} className="relative">
-              <div className="absolute inset-0 bg-gradient-to-tr from-hermes/30 to-transparent rounded-[3rem] transform rotate-3 scale-105 -z-10"></div>
-              <img 
-                src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_2zg6kRsQgLvpBAc5mmGVtMaqZi0%2Fhf_20260226_164129_05e8c8e0-3a31-40c8-b045-2c3976c890da.jpeg&w=1280&q=85" 
-                alt="Crypto Future Vision" 
-                className="rounded-[3rem] shadow-2xl object-cover aspect-square md:aspect-[4/3] w-full hover:scale-[1.02] transition-transform duration-700"
-                referrerPolicy="no-referrer"
-              />
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      {/* Target Audience Section */}
-      <section className="py-24 md:py-32 bg-charcoal px-6 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <FadeIn scale blur>
-              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-6 tracking-tighter text-white break-words sm:break-normal">
-                Für wen ist <span className="text-hermes font-serif italic font-medium tracking-normal">Krypto-Kompass</span> geeignet?
-              </h2>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-lg sm:text-xl text-gray-400 leading-relaxed">
-                Wir suchen Menschen, die Verantwortung für ihre finanzielle Zukunft übernehmen wollen.
-              </p>
-            </FadeIn>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {[
-              {
-                title: "Absolute Anfänger",
-                desc: "ohne Vorkenntnisse"
-              },
-              {
-                title: "Investoren",
-                desc: "die strategisch aufbauen wollen"
-              },
-              {
-                title: "Trader",
-                desc: "die Marktverständnis vertiefen möchten"
-              },
-              {
-                title: "Menschen",
-                desc: "die finanzielle Eigenverantwortung übernehmen wollen"
-              }
-            ].map((audience, idx) => (
-              <FadeIn key={idx} delay={0.1 * idx} direction="up" className="bg-white/5 backdrop-blur-md p-8 rounded-[2rem] border border-white/10 text-center">
-                <div className="w-10 h-10 rounded-full bg-hermes/20 flex items-center justify-center mx-auto mb-4">
-                  <ArrowRight className="text-hermes" size={16} />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-white">{audience.title}</h3>
-                <p className="text-gray-400 text-sm">{audience.desc}</p>
-              </FadeIn>
-            ))}
-          </div>
-          
-          <FadeIn direction="up" delay={0.4} className="max-w-3xl mx-auto text-center bg-white/5 border border-white/10 p-8 rounded-3xl">
-            <p className="text-xl text-gray-300 mb-4">
-              Wenn du einfach nur schnelle Gewinne suchst –<br />
-              <span className="text-white font-bold">sind wir nicht die richtige Adresse.</span>
-            </p>
-            <p className="text-xl text-hermes font-bold">
-              Wenn du nachhaltiges Wissen willst –<br />
-              bist du hier genau richtig.
-            </p>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section id="faq" className="py-24 md:py-32 px-6 bg-white overflow-hidden">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-20">
-            <FadeIn scale blur>
-              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-6 tracking-tighter text-[#0A0B0D] break-words sm:break-normal">
-                Häufige <span className="text-hermes font-serif italic font-medium tracking-normal">Fragen.</span>
-              </h2>
-            </FadeIn>
-          </div>
-
-          <div className="space-y-6">
-            <FadeIn direction="up">
-              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                <h3 className="text-xl font-bold text-charcoal mb-4">Ist der Einstieg wirklich für Anfänger geeignet?</h3>
-                <p className="text-gray-600 leading-relaxed">Ja, absolut. Unser Curriculum ist so aufgebaut, dass wir bei den absoluten Grundlagen beginnen. Du brauchst kein Vorwissen, nur die Bereitschaft zu lernen.</p>
-              </div>
-            </FadeIn>
-            <FadeIn direction="up" delay={0.1}>
-              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                <h3 className="text-xl font-bold text-charcoal mb-4">Wie schnell sehe ich Ergebnisse?</h3>
-                <p className="text-gray-600 leading-relaxed">Krypto-Kompass ist kein "Schnell-reich-werden"-Programm. Es geht um nachhaltigen Wissensaufbau. Die ersten Aha-Momente hast du bereits nach den ersten Modulen, aber strategisches Investieren ist ein langfristiger Prozess.</p>
-              </div>
-            </FadeIn>
-            <FadeIn direction="up" delay={0.2}>
-              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-100">
-                <h3 className="text-xl font-bold text-charcoal mb-4">Brauche ich viel Startkapital?</h3>
-                <p className="text-gray-600 leading-relaxed">Nein. Es geht im ersten Schritt darum, den Markt zu verstehen. Du kannst das erlernte Wissen später mit jedem beliebigen Betrag anwenden.</p>
-              </div>
             </FadeIn>
           </div>
         </div>
