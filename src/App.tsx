@@ -10,7 +10,8 @@ import {
   X,
   Instagram,
   Twitter,
-  Youtube
+  Youtube,
+  ChevronDown
 } from 'lucide-react';
 
 const FadeIn = ({ children, delay = 0, className = "", direction = "up", scale = false, blur = false }: any) => {
@@ -19,58 +20,13 @@ const FadeIn = ({ children, delay = 0, className = "", direction = "up", scale =
   
   return (
     <motion.div
-      initial={{ opacity: 0, y: yOffset, x: xOffset, scale: scale ? 0.9 : 1, filter: blur ? "blur(10px)" : "blur(0px)" }}
+      initial={{ opacity: 0, y: yOffset, x: xOffset, scale: scale ? 0.95 : 1, filter: blur ? "blur(10px)" : "blur(0px)" }}
       whileInView={{ opacity: 1, y: 0, x: 0, scale: 1, filter: "blur(0px)" }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.8, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
       className={className}
     >
       {children}
-    </motion.div>
-  );
-};
-
-const TiltImage = ({ src, alt, containerClassName = "", imgClassName = "" }: any) => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
-  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
-
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["5deg", "-5deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-5deg", "5deg"]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const xPct = mouseX / width - 0.5;
-    const yPct = mouseY / height - 0.5;
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.div
-      style={{ perspective: 1000 }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className={containerClassName}
-    >
-      <motion.img
-        src={src}
-        alt={alt}
-        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className={imgClassName}
-        referrerPolicy="no-referrer"
-      />
     </motion.div>
   );
 };
@@ -109,50 +65,76 @@ const InteractiveCompass = () => {
     <div className="flex flex-col items-center justify-center py-10 w-full">
       <div 
         ref={compassRef}
-        className="relative w-72 h-72 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-gray-50 to-white shadow-[0_20px_50px_rgba(0,0,0,0.1),inset_0_0_20px_rgba(255,255,255,1)] border-[8px] border-hermes flex items-center justify-center ring-4 ring-hermes/10"
+        className="relative w-72 h-72 md:w-96 md:h-96 rounded-full bg-bg-surface shadow-[0_20px_50px_rgba(0,0,0,0.5),inset_0_0_20px_rgba(255,255,255,0.05)] border-[1px] border-border-strong flex items-center justify-center ring-1 ring-brand-primary/20"
       >
         {/* Inner dial */}
-        <div className="absolute inset-2 rounded-full bg-gradient-to-br from-white to-gray-50 shadow-inner border border-gray-100"></div>
+        <div className="absolute inset-2 rounded-full bg-bg-elevated shadow-inner border border-border-subtle"></div>
         
         {/* Ticks */}
-        <div className="absolute inset-4 rounded-full opacity-20" style={{ background: 'repeating-conic-gradient(from 0deg, transparent 0deg, transparent 2deg, #000000 2deg, #000000 3deg)' }}></div>
-        <div className="absolute inset-8 rounded-full bg-gradient-to-b from-gray-50 to-white shadow-[inset_0_0_15px_rgba(0,0,0,0.05)]"></div>
+        <div className="absolute inset-4 rounded-full opacity-20" style={{ background: 'repeating-conic-gradient(from 0deg, transparent 0deg, transparent 2deg, rgba(255,255,255,0.2) 2deg, rgba(255,255,255,0.2) 3deg)' }}></div>
+        <div className="absolute inset-8 rounded-full bg-bg-surface shadow-[inset_0_0_15px_rgba(0,0,0,0.5)]"></div>
 
         {/* Labels */}
-        <div className="absolute top-4 w-10 h-10 md:w-14 md:h-14 drop-shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
-          <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" alt="Bitcoin" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+        <div className="absolute top-4 w-10 h-10 md:w-14 md:h-14 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+          <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" alt="Bitcoin" className="w-full h-full object-contain opacity-80" referrerPolicy="no-referrer" />
         </div>
-        <div className="absolute right-4 w-10 h-10 md:w-14 md:h-14 drop-shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
-          <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png" alt="Ethereum" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+        <div className="absolute right-4 w-10 h-10 md:w-14 md:h-14 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+          <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png" alt="Ethereum" className="w-full h-full object-contain opacity-80" referrerPolicy="no-referrer" />
         </div>
-        <div className="absolute bottom-4 w-10 h-10 md:w-14 md:h-14 drop-shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
-          <img src="https://assets.coingecko.com/coins/images/4128/large/solana.png" alt="Solana" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+        <div className="absolute bottom-4 w-10 h-10 md:w-14 md:h-14 drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+          <img src="https://assets.coingecko.com/coins/images/4128/large/solana.png" alt="Solana" className="w-full h-full object-contain opacity-80" referrerPolicy="no-referrer" />
         </div>
-        <div className="absolute left-6 font-bold text-4xl md:text-5xl text-charcoal drop-shadow-[0_4px_12px_rgba(0,0,0,0.1)]">?</div>
+        <div className="absolute left-6 font-mono font-bold text-4xl md:text-5xl text-text-secondary drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">?</div>
 
         {/* Needle */}
         <div 
           className="absolute w-8 h-[85%] z-10 flex flex-col items-center justify-center transition-transform duration-100 ease-out drop-shadow-2xl"
           style={{ transform: `rotate(${currentRotation}deg)` }}
         >
-          {/* North pointing needle (Red/Hermes) */}
-          <div className="w-0 h-0 border-l-[12px] border-r-[12px] border-b-[110px] md:border-b-[160px] border-l-transparent border-r-transparent border-b-[#F37021] relative">
-            <div className="absolute -left-[12px] top-0 w-[12px] h-[110px] md:h-[160px] bg-black/20 skew-y-[85deg] origin-bottom"></div>
+          {/* North pointing needle (Brand Primary) */}
+          <div className="w-0 h-0 border-l-[12px] border-r-[12px] border-b-[110px] md:border-b-[160px] border-l-transparent border-r-transparent border-b-brand-primary relative">
+            <div className="absolute -left-[12px] top-0 w-[12px] h-[110px] md:h-[160px] bg-black/40 skew-y-[85deg] origin-bottom"></div>
           </div>
-          {/* South pointing needle (White/Silver) */}
-          <div className="w-0 h-0 border-l-[12px] border-r-[12px] border-t-[110px] md:border-t-[160px] border-l-transparent border-r-transparent border-t-gray-200 relative">
-            <div className="absolute -left-[12px] bottom-0 w-[12px] h-[110px] md:h-[160px] bg-black/10 -skew-y-[85deg] origin-top"></div>
+          {/* South pointing needle (Dark) */}
+          <div className="w-0 h-0 border-l-[12px] border-r-[12px] border-t-[110px] md:border-t-[160px] border-l-transparent border-r-transparent border-t-text-muted relative">
+            <div className="absolute -left-[12px] bottom-0 w-[12px] h-[110px] md:h-[160px] bg-black/40 -skew-y-[85deg] origin-top"></div>
           </div>
         </div>
 
         {/* Center Pin */}
-        <div className="absolute w-10 h-10 rounded-full bg-gradient-to-br from-gray-300 to-gray-600 shadow-[0_4px_10px_rgba(0,0,0,0.5)] z-20 border-2 border-gray-400">
-          <div className="absolute inset-2 rounded-full bg-gradient-to-br from-gray-800 to-black"></div>
+        <div className="absolute w-10 h-10 rounded-full bg-bg-elevated shadow-[0_4px_10px_rgba(0,0,0,0.8)] z-20 border border-border-strong">
+          <div className="absolute inset-2 rounded-full bg-bg-base"></div>
         </div>
-        
-        {/* Glass glare */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/5 to-white/20 pointer-events-none"></div>
       </div>
+    </div>
+  );
+};
+
+const AccordionItem = ({ question, answer, isOpen, onClick }: { question: string, answer: string, isOpen: boolean, onClick: () => void }) => {
+  return (
+    <div className="border-b border-border-subtle">
+      <button 
+        className="w-full py-6 flex justify-between items-center text-left focus:outline-none group"
+        onClick={onClick}
+      >
+        <span className="text-lg font-medium text-text-primary group-hover:text-brand-primary transition-colors">{question}</span>
+        <motion.div 
+          animate={{ rotate: isOpen ? 180 : 0 }} 
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="w-8 h-8 rounded-full border border-border-subtle flex items-center justify-center flex-shrink-0 ml-4 group-hover:border-brand-primary/50"
+        >
+          <ChevronDown size={16} className="text-text-secondary group-hover:text-brand-primary" />
+        </motion.div>
+      </button>
+      <motion.div 
+        initial={false}
+        animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+        className="overflow-hidden"
+      >
+        <p className="pb-6 text-text-secondary leading-relaxed pr-12">
+          {answer}
+        </p>
+      </motion.div>
     </div>
   );
 };
@@ -162,6 +144,7 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -179,29 +162,48 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
+  const faqs = [
+    {
+      question: "Brauche ich Vorwissen oder Startkapital?",
+      answer: "Nein. Unser System ist so aufgebaut, dass du bei null starten kannst. Wir zeigen dir Schritt für Schritt, wie du den Markt verstehst und mit ersten kleinen Beträgen sicher agierst, bevor du skalierst."
+    },
+    {
+      question: "Wie viel Zeit muss ich wöchentlich investieren?",
+      answer: "Etwa 2-3 Stunden pro Woche reichen aus, um die Inhalte zu verinnerlichen und die Strategien umzusetzen. Die Plattform ist 24/7 verfügbar, du lernst in deinem eigenen Tempo."
+    },
+    {
+      question: "Ist das wieder nur eine 'Schnell-Reich-Werden' Gruppe?",
+      answer: "Absolut nicht. Wir lehnen riskantes Trading und unrealistische Versprechen ab. KryptoKompass steht für datenbasierte Entscheidungen, Risikomanagement und langfristigen Vermögensaufbau."
+    },
+    {
+      question: "Gibt es persönlichen Support, wenn ich feststecke?",
+      answer: "Ja. Neben der aktiven Community bieten wir regelmäßige Live-Q&As und direkten Support durch unsere Experten an. Du wirst auf deinem Weg nicht alleingelassen."
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-white text-charcoal font-sans overflow-x-hidden selection:bg-hermes/20 selection:text-charcoal">
+    <div className="min-h-screen bg-bg-base text-text-primary font-sans overflow-x-hidden selection:bg-brand-primary/30 selection:text-white">
       {/* Navbar */}
-      <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${isVisible ? 'translate-y-0' : '-translate-y-full'} ${isScrolled ? 'bg-white/95 backdrop-blur-md py-4' : 'bg-transparent py-6'}`}>
+      <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${isVisible ? 'translate-y-0' : '-translate-y-full'} ${isScrolled ? 'bg-bg-base/80 backdrop-blur-xl border-b border-border-subtle py-4' : 'bg-transparent py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <div className="flex items-center gap-2 cursor-pointer">
-            <span className="font-bold text-2xl tracking-tight text-[#0A0B0D]">Krypto<span className="text-hermes">Kompass</span></span>
+            <span className="font-bold text-xl tracking-tight text-white">Krypto<span className="text-brand-primary">Kompass</span></span>
           </div>
           
-          <nav className="hidden md:flex items-center gap-8 font-medium text-sm text-gray-600">
-            <a href="#features" className="hover:text-hermes transition-colors">Leistungen</a>
-            <a href="#mindset" className="hover:text-hermes transition-colors">Mindset</a>
-            <a href="#faq" className="hover:text-hermes transition-colors">FAQ</a>
+          <nav className="hidden md:flex items-center gap-8 font-medium text-sm text-text-secondary">
+            <a href="#system" className="hover:text-white transition-colors">System</a>
+            <a href="#features" className="hover:text-white transition-colors">Architektur</a>
+            <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
           </nav>
 
           <div className="hidden md:flex items-center gap-6">
-            <a href="#login" className="text-sm font-medium text-gray-600 hover:text-charcoal transition-colors">Digitales Klassenzimmer</a>
-            <a href="#start" className="bg-hermes text-white px-6 py-2.5 rounded-lg text-sm font-bold hover:bg-hermes-dark transition-all duration-300">
-              Jetzt kostenlos starten
+            <a href="#login" className="text-sm font-medium text-text-secondary hover:text-white transition-colors">Digitales Klassenzimmer</a>
+            <a href="#start" className="bg-white text-black px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-gray-200 transition-all duration-300">
+              Zugang anfragen
             </a>
           </div>
 
-          <button className="md:hidden text-charcoal" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
@@ -209,192 +211,243 @@ export default function App() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden">
+        <div className="fixed inset-0 z-40 bg-bg-base pt-24 px-6 md:hidden border-b border-border-subtle">
           <nav className="flex flex-col gap-6 text-lg font-medium">
-            <a href="#features" onClick={() => setMobileMenuOpen(false)}>Leistungen</a>
-            <a href="#mindset" onClick={() => setMobileMenuOpen(false)}>Mindset</a>
-            <a href="#faq" onClick={() => setMobileMenuOpen(false)}>FAQ</a>
-            <div className="h-px bg-gray-100 w-full my-2"></div>
-            <a href="#login" onClick={() => setMobileMenuOpen(false)}>Digitales Klassenzimmer</a>
-            <a href="#start" onClick={() => setMobileMenuOpen(false)} className="bg-hermes text-white px-6 py-3 rounded-lg text-center mt-4 font-bold">Jetzt kostenlos starten</a>
+            <a href="#system" onClick={() => setMobileMenuOpen(false)} className="text-text-secondary hover:text-white">System</a>
+            <a href="#features" onClick={() => setMobileMenuOpen(false)} className="text-text-secondary hover:text-white">Architektur</a>
+            <a href="#faq" onClick={() => setMobileMenuOpen(false)} className="text-text-secondary hover:text-white">FAQ</a>
+            <div className="h-px bg-border-subtle w-full my-2"></div>
+            <a href="#login" onClick={() => setMobileMenuOpen(false)} className="text-text-secondary hover:text-white">Digitales Klassenzimmer</a>
+            <a href="#start" onClick={() => setMobileMenuOpen(false)} className="bg-white text-black px-6 py-3 rounded-full text-center mt-4 font-semibold">Zugang anfragen</a>
           </nav>
         </div>
       )}
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-hidden min-h-[80vh] flex items-center bg-white">
-        {/* Background Image - Fixed width container, no zoom/distortion */}
-        <div className="absolute inset-0 z-0 flex justify-center items-center pointer-events-none">
-          <div className="w-full max-w-7xl h-full relative flex items-center justify-center">
-            <img 
-              src="https://s1.directupload.eu/images/260226/reta6zp3.webp" 
-              alt="KryptoKompass Hero" 
-              className="hidden md:block w-full h-full object-contain object-right opacity-100"
-              referrerPolicy="no-referrer"
-            />
-            {/* Cleaner gradient overlay for readability */}
-            <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-white/60 via-white/20 to-transparent md:from-white/80 md:via-white/20 md:to-transparent"></div>
-          </div>
+      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-hidden min-h-[90vh] flex items-center">
+        {/* Abstract Background Elements */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-primary/10 rounded-full blur-[120px]"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-[30rem] h-[30rem] bg-brand-secondary/5 rounded-full blur-[150px]"></div>
+          
+          {/* Grid Pattern */}
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50 mask-image:linear-gradient(to_bottom,white,transparent)"></div>
         </div>
         
-        <div className="max-w-7xl mx-auto w-full relative z-10">
-          <div className="max-w-2xl">
-            <FadeIn blur scale className="mb-6">
-              <span className="inline-flex items-center gap-2 text-hermes font-bold text-sm uppercase tracking-wider">
-                Die führende Krypto-Schule im D-A-CH Raum
-              </span>
+        <div className="max-w-7xl mx-auto w-full relative z-10 grid lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-7">
+            <FadeIn blur className="mb-8">
+              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-border-subtle bg-white/5 backdrop-blur-md">
+                <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
+                <span className="micro-label text-white">Systematische Krypto-Ausbildung</span>
+              </div>
             </FadeIn>
             
-            <FadeIn blur scale delay={0.2}>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[1.1] md:leading-[0.9] mb-6 text-[#0A0B0D] break-words sm:break-normal">
-                Dein Wegweiser zur <br className="hidden sm:block" />
-                <span className="text-hermes font-serif italic font-medium tracking-normal">finanziellen Freiheit.</span>
+            <FadeIn blur delay={0.1}>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium tracking-tight leading-[0.95] mb-8 text-white">
+                Beherrsche den Markt. <br />
+                <span className="text-text-secondary font-serif italic">Sichere deine Zukunft.</span>
               </h1>
             </FadeIn>
 
-            <FadeIn delay={0.4} direction="right">
-              <div className="text-base sm:text-lg md:text-xl text-gray-600 font-medium leading-relaxed mb-8 max-w-xl space-y-4">
-                <p>
-                  Der Kryptomarkt bietet historische Chancen. Wir zeigen dir, wie du sie nutzt.
-                </p>
-                <p className="font-bold text-charcoal text-2xl">
-                  Ohne Vorwissen. Ohne Stress. Mit System.
-                </p>
-              </div>
+            <FadeIn delay={0.2}>
+              <p className="text-lg md:text-xl text-text-secondary font-light leading-relaxed mb-10 max-w-2xl">
+                Der Kryptomarkt bestraft Emotionen und belohnt Systeme. Wir liefern dir die Architektur, die Analysen und das Netzwerk, um <strong className="text-white font-medium">datenbasierte Entscheidungen</strong> zu treffen.
+              </p>
             </FadeIn>
 
-            <FadeIn delay={0.6} className="flex flex-col sm:flex-row items-center justify-start gap-4">
-              <a href="#start" className="w-full sm:w-auto bg-hermes text-white px-10 py-4 rounded-lg text-lg font-bold hover:bg-hermes-dark transition-all duration-300 text-center">
-                Jetzt kostenlos starten
+            <FadeIn delay={0.3} className="flex flex-col sm:flex-row items-center justify-start gap-4">
+              <a href="#start" className="w-full sm:w-auto bg-white text-black px-8 py-4 rounded-full text-base font-semibold hover:bg-gray-200 transition-all duration-300 text-center">
+                Systemzugang anfragen
               </a>
-              <a href="#features" className="w-full sm:w-auto bg-white text-charcoal border border-gray-200 px-10 py-4 rounded-lg text-lg font-bold hover:border-hermes hover:text-hermes transition-all duration-300 text-center">
-                Unser Konzept
+              <a href="#system" className="w-full sm:w-auto bg-transparent text-white border border-border-strong px-8 py-4 rounded-full text-base font-medium hover:border-white transition-all duration-300 text-center">
+                Architektur ansehen
               </a>
             </FadeIn>
-          </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-400"
-        >
-          <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Scrollen</span>
-          <div className="w-px h-12 bg-gradient-to-b from-gray-400 to-transparent"></div>
-        </motion.div>
-      </section>
-
-      {/* Trust Bar */}
-      <section className="py-10 bg-charcoal relative z-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col sm:flex-row flex-wrap justify-center md:justify-between items-start sm:items-center gap-6 md:gap-4">
-            <FadeIn direction="right" className="flex items-center gap-4">
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-hermes/10 border border-hermes/20 flex items-center justify-center flex-shrink-0">
-                <X className="text-hermes" size={20} />
+            
+            <FadeIn delay={0.5} className="mt-12 flex items-center gap-6 border-t border-border-subtle pt-8">
+              <div className="flex -space-x-3">
+                {[1,2,3].map(i => (
+                  <div key={i} className="w-10 h-10 rounded-full border-2 border-bg-base bg-bg-surface overflow-hidden">
+                    <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="Member" referrerPolicy="no-referrer" />
+                  </div>
+                ))}
               </div>
-              <span className="text-white font-black tracking-widest text-xs sm:text-sm md:text-base">KEIN COACHING-ZIRKUS</span>
-            </FadeIn>
-            <FadeIn direction="right" delay={0.1} className="flex items-center gap-4">
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-hermes/10 border border-hermes/20 flex items-center justify-center flex-shrink-0">
-                <X className="text-hermes" size={20} />
+              <div className="flex flex-col">
+                <span className="text-white font-medium text-sm">500+ verifizierte Mitglieder</span>
+                <span className="text-text-muted text-xs">Im D-A-CH Raum</span>
               </div>
-              <span className="text-white font-black tracking-widest text-xs sm:text-sm md:text-base">KEINE INVESTMENTANNAHME</span>
-            </FadeIn>
-            <FadeIn direction="right" delay={0.2} className="flex items-center gap-4">
-              <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-hermes/10 border border-hermes/20 flex items-center justify-center flex-shrink-0">
-                <X className="text-hermes" size={20} />
-              </div>
-              <span className="text-white font-black tracking-widest text-xs sm:text-sm md:text-base">KEIN "WIR HANDELN FÜR DICH"</span>
             </FadeIn>
           </div>
-        </div>
-      </section>
-
-      {/* The Vision Section */}
-      <section id="features" className="py-24 md:py-32 relative px-6 overflow-hidden bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <FadeIn direction="right" blur>
-              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-[1.1] md:leading-none text-[#0A0B0D] break-words sm:break-normal">
-                Deine Abkürzung zum <span className="text-hermes font-serif italic font-medium tracking-normal">Krypto-Erfolg.</span>
-              </h2>
-              <div className="space-y-6 text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed">
-                <p>
-                  Keine graue Theorie. Keine falschen Versprechen.
-                </p>
-                <p>
-                  Wir liefern dir <span className="font-bold text-charcoal">100% anwendbare Praxis</span>, damit du sofort durchstarten kannst.
-                </p>
-                <p className="font-black text-hermes text-3xl mt-8">
-                  Dein Vorsprung beginnt hier.
-                </p>
+          
+          <div className="lg:col-span-5 hidden lg:block relative">
+            <FadeIn delay={0.4} scale blur className="relative z-10">
+              <div className="glass-panel rounded-3xl p-6 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-primary to-transparent opacity-50"></div>
+                
+                <div className="flex justify-between items-center mb-8">
+                  <span className="micro-label">Live Market Data</span>
+                  <span className="flex items-center gap-2 text-xs text-emerald-400 bg-emerald-400/10 px-2 py-1 rounded">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> System Active
+                  </span>
+                </div>
+                
+                <div className="space-y-6">
+                  {[
+                    { label: "BTC/USD", value: "$64,230.00", change: "+2.4%" },
+                    { label: "ETH/USD", value: "$3,450.20", change: "+1.8%" },
+                    { label: "SOL/USD", value: "$145.80", change: "+5.2%" }
+                  ].map((asset, i) => (
+                    <div key={i} className="flex justify-between items-end border-b border-border-subtle pb-4">
+                      <div>
+                        <div className="text-text-muted text-xs mb-1 font-mono">{asset.label}</div>
+                        <div className="text-xl font-medium text-white font-mono">{asset.value}</div>
+                      </div>
+                      <div className="text-emerald-400 text-sm font-mono">{asset.change}</div>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="mt-8 pt-6 border-t border-border-subtle">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-text-secondary">Signal Strength</span>
+                    <span className="text-sm text-white font-medium">Strong Buy</span>
+                  </div>
+                  <div className="w-full h-1.5 bg-bg-elevated rounded-full mt-3 overflow-hidden">
+                    <div className="h-full bg-brand-primary w-[85%] rounded-full"></div>
+                  </div>
+                </div>
               </div>
             </FadeIn>
             
-            <div className="grid grid-cols-2 gap-4">
-              <FadeIn delay={0.2} scale blur className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
-                <img src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?q=80&w=1000&auto=format&fit=crop" alt="Crypto 1" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
-              </FadeIn>
-              <FadeIn delay={0.4} scale blur className="aspect-square rounded-3xl overflow-hidden shadow-2xl mt-12">
-                <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&w=1000&auto=format&fit=crop" alt="Crypto 2" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
+            {/* Decorative background elements for the card */}
+            <div className="absolute -inset-4 bg-gradient-to-tr from-brand-primary/20 to-transparent blur-2xl -z-10 rounded-full opacity-50"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Bar (Technical) */}
+      <section className="py-8 border-y border-border-subtle bg-bg-surface/50">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-between items-center gap-8">
+            <FadeIn direction="right" className="flex items-center gap-3">
+              <span className="text-brand-primary font-mono text-lg">01</span>
+              <span className="micro-label text-white">Kein Coaching-Zirkus</span>
+            </FadeIn>
+            <FadeIn direction="right" delay={0.1} className="flex items-center gap-3">
+              <span className="text-brand-primary font-mono text-lg">02</span>
+              <span className="micro-label text-white">Keine Investmentannahme</span>
+            </FadeIn>
+            <FadeIn direction="right" delay={0.2} className="flex items-center gap-3">
+              <span className="text-brand-primary font-mono text-lg">03</span>
+              <span className="micro-label text-white">100% Eigenverantwortung</span>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* The System Section */}
+      <section id="system" className="py-24 md:py-32 relative px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <FadeIn direction="right" blur>
+              <span className="micro-label text-brand-primary mb-4 block">Die Methodik</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-8 tracking-tight leading-[1.1] text-white">
+                Logik schlägt <span className="font-serif italic text-text-secondary">Emotion.</span>
+              </h2>
+              <div className="space-y-6 text-lg text-text-secondary font-light leading-relaxed">
+                <p>
+                  Die meisten Marktteilnehmer verlieren Geld, weil sie auf Hype und Emotionen reagieren. Wir implementieren ein System.
+                </p>
+                <p>
+                  Lerne, wie du On-Chain-Daten liest, Marktzyklen verstehst und ein asymmetrisches Risiko-Rendite-Profil aufbaust. <strong className="text-white font-medium">Keine graue Theorie, sondern anwendbare Architektur.</strong>
+                </p>
+              </div>
+              
+              <div className="mt-12 grid grid-cols-2 gap-6">
+                <div className="border-l border-brand-primary pl-4">
+                  <div className="text-3xl font-medium text-white mb-1">100%</div>
+                  <div className="text-sm text-text-muted">Datenbasiert</div>
+                </div>
+                <div className="border-l border-border-strong pl-4">
+                  <div className="text-3xl font-medium text-white mb-1">24/7</div>
+                  <div className="text-sm text-text-muted">Systemzugriff</div>
+                </div>
+              </div>
+            </FadeIn>
+            
+            <div className="relative">
+              <FadeIn delay={0.2} scale blur className="glass-panel rounded-3xl overflow-hidden aspect-[4/3] relative">
+                <img src="https://images.unsplash.com/photo-1642104704074-907c0698cbd9?q=80&w=1200&auto=format&fit=crop" alt="Data Analysis" className="w-full h-full object-cover opacity-60 mix-blend-luminosity" referrerPolicy="no-referrer" />
+                <div className="absolute inset-0 bg-gradient-to-t from-bg-base via-transparent to-transparent"></div>
+                
+                {/* Overlay UI Element */}
+                <div className="absolute bottom-6 left-6 right-6 glass-panel rounded-xl p-4 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-bg-elevated flex items-center justify-center border border-border-subtle">
+                      <BarChart3 size={20} className="text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium text-white">Market Structure</div>
+                      <div className="text-xs text-text-muted font-mono">Analysis Complete</div>
+                    </div>
+                  </div>
+                  <div className="text-emerald-400 font-mono text-sm">Optimal</div>
+                </div>
               </FadeIn>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Glassmorphism Features */}
-      <section className="py-24 md:py-32 relative px-6 overflow-hidden bg-gray-50">
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-          <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-hermes/5 blur-[120px]"></div>
-          <div className="absolute bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-blue-500/5 blur-[120px]"></div>
-        </div>
-
+      {/* Features Grid */}
+      <section id="features" className="py-24 md:py-32 relative px-6 bg-bg-surface border-y border-border-subtle">
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <FadeIn scale blur>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 tracking-tighter leading-[1.1] md:leading-none text-[#0A0B0D] break-words sm:break-normal">
-                Was dich <span className="text-hermes font-serif italic font-medium tracking-normal">erwartet.</span>
-              </h2>
-            </FadeIn>
-            <FadeIn delay={0.2}>
-              <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
-                Alles, was du brauchst, um im Kryptomarkt durchzustarten.
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div className="max-w-2xl">
+              <FadeIn scale blur>
+                <span className="micro-label text-brand-primary mb-4 block">Infrastruktur</span>
+                <h2 className="text-4xl md:text-5xl font-medium tracking-tight leading-[1.1] text-white">
+                  Das Fundament deines <span className="font-serif italic text-text-secondary">Erfolgs.</span>
+                </h2>
+              </FadeIn>
+            </div>
+            <FadeIn delay={0.2} direction="left">
+              <p className="text-text-secondary max-w-md">
+                Wir stellen dir die Werkzeuge, das Wissen und das Netzwerk zur Verfügung, um im Markt als Architekt zu agieren, nicht als Konsument.
               </p>
             </FadeIn>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                icon: <BrainCircuit className="w-10 h-10 text-hermes" />,
-                title: "Klarheit statt Chaos",
-                desc: "Verstehe den Markt in Rekordzeit. Wir filtern den Lärm und zeigen dir, was wirklich zählt."
+                icon: <BrainCircuit className="w-6 h-6 text-white" />,
+                title: "Signal vs. Noise",
+                desc: "Filtere den Lärm. Lerne Marktstrukturen zu lesen und echte von falschen Ausbrüchen zu unterscheiden."
               },
               {
-                icon: <BarChart3 className="w-10 h-10 text-hermes" />,
-                title: "Strategien der Profis",
-                desc: "Investiere mit System, nicht nach Gefühl. Erlerne bewährte Methoden für nachhaltigen Erfolg."
+                icon: <BarChart3 className="w-6 h-6 text-white" />,
+                title: "Risiko-Architektur",
+                desc: "Kapitalerhalt steht an erster Stelle. Implementiere professionelles Risikomanagement für dein Portfolio."
               },
               {
-                icon: <PlaySquare className="w-10 h-10 text-hermes" />,
-                title: "Insider-Insights",
-                desc: "Erkenne Trends, bevor sie Mainstream werden und positioniere dich frühzeitig."
+                icon: <PlaySquare className="w-6 h-6 text-white" />,
+                title: "Masterclasses",
+                desc: "Hochverdichtetes Wissen in Videoform. Von den Grundlagen bis zu fortgeschrittenen On-Chain-Metriken."
               },
               {
-                icon: <Users className="w-10 h-10 text-hermes" />,
-                title: "Starke Community",
-                desc: "Profitiere vom Wissen und Netzwerk von über 500+ gleichgesinnten Mitgliedern."
+                icon: <Users className="w-6 h-6 text-white" />,
+                title: "Elite Netzwerk",
+                desc: "Umgebe dich mit Akteuren, die das gleiche Ziel verfolgen. Direkter Austausch und Live-Analysen."
               }
             ].map((feature, idx) => (
-              <FadeIn key={idx} delay={0.2 * idx} direction="up" scale className="bg-white/40 backdrop-blur-2xl p-8 rounded-[2.5rem] border border-white/60 shadow-[0_20px_40px_rgba(0,0,0,0.03)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.08)] hover:-translate-y-3 transition-all duration-500 group flex flex-col">
-                <div className="w-16 h-16 bg-white/80 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-white group-hover:scale-110 transition-transform duration-500">
+              <FadeIn key={idx} delay={0.1 * idx} direction="up" className="glass-panel p-8 rounded-2xl hover:bg-bg-elevated transition-colors duration-300 group">
+                <div className="w-12 h-12 rounded-xl bg-bg-elevated border border-border-strong flex items-center justify-center mb-6 group-hover:border-brand-primary transition-colors duration-300">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-charcoal">{feature.title}</h3>
-                <p className="text-gray-600 font-medium text-sm flex-grow">{feature.desc}</p>
+                <h3 className="text-xl font-medium mb-3 text-white">{feature.title}</h3>
+                <p className="text-text-secondary text-sm leading-relaxed">{feature.desc}</p>
               </FadeIn>
             ))}
           </div>
@@ -402,28 +455,31 @@ export default function App() {
       </section>
 
       {/* Compass Section */}
-      <section className="py-24 md:py-32 px-6 bg-white overflow-hidden border-t border-gray-100">
+      <section className="py-24 md:py-32 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <FadeIn direction="right" blur>
-              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-[1.1] md:leading-tight text-[#0A0B0D] break-words sm:break-normal">
-                Volle <span className="text-hermes font-serif italic font-medium tracking-normal">Kontrolle.</span>
+              <span className="micro-label text-brand-primary mb-4 block">Navigation</span>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-8 tracking-tight leading-[1.1] text-white">
+                Behalte die <span className="font-serif italic text-text-secondary">Orientierung.</span>
               </h2>
-              <div className="space-y-6 text-base sm:text-lg text-gray-600 leading-relaxed mb-10">
-                <p className="font-bold text-charcoal text-2xl">
-                  Du triffst die Entscheidungen.<br />Wir zeigen dir den Weg.
+              <div className="space-y-6 text-lg text-text-secondary font-light leading-relaxed mb-10">
+                <p>
+                  Der Markt ist volatil. Ohne Kompass verlierst du dich in den Schwankungen.
+                </p>
+                <p className="text-white font-medium">
+                  Wir liefern dir die Koordinaten. Du steuerst das Schiff.
                 </p>
               </div>
-              <div className="flex items-center gap-6">
-                <div className="flex -space-x-4">
-                  {[1,2,3,4].map(i => (
-                    <div key={i} className="w-12 h-12 rounded-full border-4 border-white bg-gray-200 overflow-hidden shadow-md">
-                      <img src={`https://i.pravatar.cc/100?img=${i+20}`} alt="User" referrerPolicy="no-referrer" />
-                    </div>
-                  ))}
-                </div>
-                <p className="text-sm font-bold text-gray-500">Über 500+ Mitglieder navigieren bereits mit uns.</p>
-              </div>
+              
+              <ul className="space-y-4 mb-10">
+                {["Makroökonomische Zusammenhänge", "On-Chain Datenanalyse", "Marktpsychologie & Zyklen"].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-text-secondary">
+                    <div className="w-1.5 h-1.5 rounded-full bg-brand-primary"></div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </FadeIn>
             
             <FadeIn direction="left" scale delay={0.3} className="flex justify-center">
@@ -433,123 +489,112 @@ export default function App() {
         </div>
       </section>
 
-      {/* Platform Section */}
-      <section className="py-24 md:py-32 bg-gray-50 px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <FadeIn direction="right" scale>
-              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-8 tracking-tighter leading-[1.1] md:leading-tight text-[#0A0B0D] break-words sm:break-normal">
-                Alles, was du brauchst, <br className="hidden sm:block" /> <span className="text-hermes font-serif italic font-medium tracking-normal">an einem Ort.</span>
-              </h2>
-              <p className="text-lg sm:text-xl text-gray-600 mb-10 font-medium leading-relaxed">
-                Premium-Inhalte, interaktive Tools und eine Community, die dich voranbringt. Starte jetzt und sichere dir deinen Vorsprung.
-              </p>
-              <div className="space-y-4 mb-12">
-                {["Exklusive Video-Masterclasses", "Live Markt-Analysen", "1-zu-1 Support", "Premium Community Zugang"].map((item, i) => (
-                  <div key={i} className="flex items-center gap-4 text-lg font-bold text-charcoal">
-                    <div className="w-6 h-6 rounded-full bg-hermes flex items-center justify-center flex-shrink-0">
-                      <ArrowRight size={14} className="text-white" />
-                    </div>
-                    {item}
-                  </div>
-                ))}
-              </div>
-              <a href="#start" className="inline-flex items-center gap-3 bg-hermes text-white px-10 py-4 rounded-lg text-lg font-bold hover:bg-hermes-dark transition-all duration-300">
-                Jetzt Zugang sichern <ArrowRight size={22} />
-              </a>
-            </FadeIn>
-            
-            <FadeIn direction="left" blur delay={0.4} className="relative">
-              <img 
-                src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_2zg6kRsQgLvpBAc5mmGVtMaqZi0%2Fhf_20260225_203429_79b3f6a2-76c7-445b-990c-d52bcc2be55c.jpeg&w=1280&q=85" 
-                alt="KryptoKompass Plattform" 
-                className="w-full h-auto rounded-3xl shadow-2xl"
-                referrerPolicy="no-referrer"
-              />
-            </FadeIn>
+      {/* FAQ Section */}
+      <section id="faq" className="py-24 md:py-32 bg-bg-surface border-t border-border-subtle px-6">
+        <div className="max-w-3xl mx-auto">
+          <FadeIn blur className="text-center mb-16">
+            <span className="micro-label text-brand-primary mb-4 block">Klarheit</span>
+            <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-white">
+              Häufig gestellte <span className="font-serif italic text-text-secondary">Fragen.</span>
+            </h2>
+          </FadeIn>
+
+          <div className="border-t border-border-subtle">
+            {faqs.map((faq, index) => (
+              <FadeIn key={index} delay={0.1 * index} direction="up">
+                <AccordionItem 
+                  question={faq.question} 
+                  answer={faq.answer} 
+                  isOpen={openFaqIndex === index}
+                  onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+                />
+              </FadeIn>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section (Replaces Pricing) */}
-      <section id="start" className="py-24 md:py-40 bg-charcoal px-6 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20">
-          <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-hermes/40 blur-[150px]"></div>
+      {/* CTA Section */}
+      <section id="start" className="py-24 md:py-40 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-brand-primary/10 rounded-full blur-[150px]"></div>
         </div>
 
-        <div className="max-w-4xl mx-auto relative z-10 text-center">
+        <div className="max-w-4xl mx-auto relative z-10 text-center glass-panel p-12 md:p-20 rounded-[3rem] border border-border-strong">
           <FadeIn scale blur>
-            <h2 className="text-4xl sm:text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-tight text-white break-words sm:break-normal">
-              Bereit für den <br className="hidden sm:block" /> <span className="text-hermes font-serif italic font-medium tracking-normal">nächsten Schritt?</span>
+            <h2 className="text-4xl md:text-6xl font-medium mb-6 tracking-tight leading-tight text-white">
+              Initialisiere dein <br />
+              <span className="font-serif italic text-text-secondary">System-Upgrade.</span>
             </h2>
           </FadeIn>
           <FadeIn delay={0.2} direction="up">
-            <p className="text-lg sm:text-xl text-gray-400 leading-relaxed mb-12 max-w-2xl mx-auto">
-              Sichere dir jetzt deinen kostenlosen Zugang und beginne deine Reise zu mehr Souveränität und Marktverständnis im Krypto-Space.
+            <p className="text-lg text-text-secondary font-light leading-relaxed mb-10 max-w-2xl mx-auto">
+              Tritt dem exklusiven Netzwerk bei und erhalte sofortigen Zugriff auf die Architektur, die deinen Krypto-Erfolg systematisiert.
             </p>
           </FadeIn>
           <FadeIn delay={0.4} direction="up">
             <form className="flex flex-col sm:flex-row gap-4 justify-center max-w-xl mx-auto">
               <input 
                 type="email" 
-                placeholder="Deine E-Mail Adresse" 
-                className="px-6 py-4 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-hermes flex-grow"
+                placeholder="E-Mail Adresse eingeben" 
+                className="px-6 py-4 rounded-full bg-bg-elevated border border-border-strong text-white placeholder-text-muted focus:outline-none focus:border-brand-primary flex-grow transition-colors"
                 required
               />
-              <button type="submit" className="bg-hermes text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-hermes-dark transition-all duration-300 whitespace-nowrap">
-                Kostenlos starten
+              <button type="submit" className="bg-white text-black px-8 py-4 rounded-full text-base font-semibold hover:bg-gray-200 transition-all duration-300 whitespace-nowrap">
+                Zugang anfragen
               </button>
             </form>
-            <p className="text-sm text-gray-500 mt-6">Kein Spam. Jederzeit abmeldbar.</p>
+            <p className="text-xs text-text-muted mt-6 font-mono uppercase tracking-wider">Secure Connection • No Spam</p>
           </FadeIn>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-charcoal text-white py-20 px-6">
+      <footer className="bg-bg-base border-t border-border-subtle py-16 px-6">
         <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 lg:gap-24">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-2 mb-6">
-              <span className="font-bold text-2xl tracking-tight">Krypto<span className="text-hermes">Kompass</span></span>
+              <span className="font-bold text-xl tracking-tight text-white">Krypto<span className="text-brand-primary">Kompass</span></span>
             </div>
-            <p className="text-gray-400 max-w-sm mb-8 leading-relaxed">
-              Die Nummer 1 Krypto Schule in Deutschland, Österreich und der Schweiz. Lerne die Welt der Kryptowährungen verstehen und profitiere gemeinsam in einer starken Community.
+            <p className="text-text-secondary text-sm max-w-sm mb-8 leading-relaxed">
+              Die systematische Krypto-Ausbildung für den D-A-CH Raum. Datenbasiert, transparent und fokussiert auf langfristigen Vermögensaufbau.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-hermes transition-colors duration-300 hover:scale-110">
-                <Instagram size={18} />
+              <a href="#" className="w-10 h-10 rounded-full border border-border-subtle flex items-center justify-center hover:border-brand-primary hover:text-brand-primary text-text-secondary transition-all duration-300">
+                <Instagram size={16} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-hermes transition-colors duration-300 hover:scale-110">
-                <Twitter size={18} />
+              <a href="#" className="w-10 h-10 rounded-full border border-border-subtle flex items-center justify-center hover:border-brand-primary hover:text-brand-primary text-text-secondary transition-all duration-300">
+                <Twitter size={16} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-hermes transition-colors duration-300 hover:scale-110">
-                <Youtube size={18} />
+              <a href="#" className="w-10 h-10 rounded-full border border-border-subtle flex items-center justify-center hover:border-brand-primary hover:text-brand-primary text-text-secondary transition-all duration-300">
+                <Youtube size={16} />
               </a>
             </div>
           </div>
           
           <div>
-            <h4 className="font-semibold mb-6 text-lg">Support</h4>
-            <ul className="space-y-4 text-gray-400 font-medium">
-              <li><a href="#" className="hover:text-hermes transition-colors">Kontakt</a></li>
-              <li><a href="#" className="hover:text-hermes transition-colors">FAQs</a></li>
-              <li><a href="#" className="hover:text-hermes transition-colors">AGB</a></li>
-              <li><a href="#" className="hover:text-hermes transition-colors">Datenschutz</a></li>
+            <h4 className="font-medium mb-6 text-sm text-white uppercase tracking-wider">Navigation</h4>
+            <ul className="space-y-3 text-text-secondary text-sm">
+              <li><a href="#system" className="hover:text-white transition-colors">System</a></li>
+              <li><a href="#features" className="hover:text-white transition-colors">Architektur</a></li>
+              <li><a href="#faq" className="hover:text-white transition-colors">FAQ</a></li>
+              <li><a href="#login" className="hover:text-white transition-colors">Digitales Klassenzimmer</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-semibold mb-6 text-lg">Über uns</h4>
-            <ul className="space-y-4 text-gray-400 font-medium">
-              <li><a href="#" className="hover:text-hermes transition-colors">Unsere Geschichte</a></li>
-              <li><a href="#" className="hover:text-hermes transition-colors">Regulatorische Richtlinien</a></li>
-              <li><a href="#" className="hover:text-hermes transition-colors">Cookie-Richtlinie</a></li>
+            <h4 className="font-medium mb-6 text-sm text-white uppercase tracking-wider">Legal</h4>
+            <ul className="space-y-3 text-text-secondary text-sm">
+              <li><a href="#" className="hover:text-white transition-colors">Impressum</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Datenschutz</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">AGB</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Risikohinweis</a></li>
             </ul>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm font-medium">
-          <p>&copy; {new Date().getFullYear()} KryptoKompass. Alle Rechte vorbehalten.</p>
-          <p>Entwickelt für die Zukunft.</p>
+        <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-border-subtle flex flex-col md:flex-row justify-between items-center gap-4 text-text-muted text-xs font-mono">
+          <p>&copy; {new Date().getFullYear()} KryptoKompass. All rights reserved.</p>
+          <p>System Version 2.0.4</p>
         </div>
       </footer>
     </div>
