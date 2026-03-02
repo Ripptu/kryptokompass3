@@ -20,11 +20,11 @@ const FadeIn = ({ children, delay = 0, className = "", direction = "up", scale =
   
   return (
     <motion.div
-      initial={{ opacity: 0, y: yOffset, x: xOffset, scale: scale ? 0.95 : 1, filter: blur ? "blur(10px)" : "blur(0px)" }}
-      whileInView={{ opacity: 1, y: 0, x: 0, scale: 1, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: yOffset, x: xOffset, scale: scale ? 0.95 : 1 }}
+      whileInView={{ opacity: 1, y: 0, x: 0, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.8, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
-      className={className}
+      transition={{ duration: 0.6, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
+      className={`will-change-transform ${className}`}
     >
       {children}
     </motion.div>
@@ -38,26 +38,36 @@ const InteractiveCompass = () => {
   const [currentRotation, setCurrentRotation] = useState(0);
 
   useEffect(() => {
+    let ticking = false;
     const handleMouseMove = (e: MouseEvent) => {
-      if (!compassRef.current) return;
-      const rect = compassRef.current.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      
-      const rad = Math.atan2(e.clientY - centerY, e.clientX - centerX);
-      let deg = rad * (180 / Math.PI) + 90;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (!compassRef.current) {
+            ticking = false;
+            return;
+          }
+          const rect = compassRef.current.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
+          
+          const rad = Math.atan2(e.clientY - centerY, e.clientX - centerX);
+          let deg = rad * (180 / Math.PI) + 90;
 
-      let delta = deg - prevAngleRef.current;
-      if (delta > 180) delta -= 360;
-      if (delta < -180) delta += 360;
+          let delta = deg - prevAngleRef.current;
+          if (delta > 180) delta -= 360;
+          if (delta < -180) delta += 360;
 
-      rotationRef.current += delta;
-      prevAngleRef.current = deg;
-      
-      setCurrentRotation(rotationRef.current);
+          rotationRef.current += delta;
+          prevAngleRef.current = deg;
+          
+          setCurrentRotation(rotationRef.current);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
@@ -76,19 +86,19 @@ const InteractiveCompass = () => {
 
         {/* Labels */}
         <div className="absolute top-4 w-10 h-10 md:w-14 md:h-14 drop-shadow-none md:drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
-          <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" alt="Bitcoin" className="w-full h-full object-contain opacity-80" referrerPolicy="no-referrer" />
+          <img src="https://assets.coingecko.com/coins/images/1/large/bitcoin.png" alt="Bitcoin" className="w-full h-full object-contain opacity-80" referrerPolicy="no-referrer" loading="lazy" />
         </div>
         <div className="absolute right-4 w-10 h-10 md:w-14 md:h-14 drop-shadow-none md:drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
-          <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png" alt="Ethereum" className="w-full h-full object-contain opacity-80" referrerPolicy="no-referrer" />
+          <img src="https://assets.coingecko.com/coins/images/279/large/ethereum.png" alt="Ethereum" className="w-full h-full object-contain opacity-80" referrerPolicy="no-referrer" loading="lazy" />
         </div>
         <div className="absolute bottom-4 w-10 h-10 md:w-14 md:h-14 drop-shadow-none md:drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
-          <img src="https://assets.coingecko.com/coins/images/4128/large/solana.png" alt="Solana" className="w-full h-full object-contain opacity-80" referrerPolicy="no-referrer" />
+          <img src="https://assets.coingecko.com/coins/images/4128/large/solana.png" alt="Solana" className="w-full h-full object-contain opacity-80" referrerPolicy="no-referrer" loading="lazy" />
         </div>
         <div className="absolute left-6 font-mono font-bold text-4xl md:text-5xl text-text-secondary drop-shadow-none md:drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">?</div>
 
         {/* Needle */}
         <div 
-          className="absolute w-8 h-[85%] z-10 flex flex-col items-center justify-center transition-transform duration-100 ease-out drop-shadow-none md:drop-shadow-2xl"
+          className="absolute w-8 h-[85%] z-10 flex flex-col items-center justify-center transition-transform duration-100 ease-out drop-shadow-none md:drop-shadow-2xl will-change-transform"
           style={{ transform: `rotate(${currentRotation}deg)` }}
         >
           {/* North pointing needle (Brand Primary) */}
@@ -143,24 +153,33 @@ export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollYRef = useRef(0);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setIsScrolled(currentScrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          
+          // Only update state if values actually changed to prevent re-renders
+          setIsScrolled(prev => prev !== (currentScrollY > 20) ? (currentScrollY > 20) : prev);
 
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
+          if (currentScrollY > lastScrollYRef.current && currentScrollY > 100) {
+            setIsVisible(prev => prev !== false ? false : prev);
+          } else {
+            setIsVisible(prev => prev !== true ? true : prev);
+          }
+          lastScrollYRef.current = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
       }
-      setLastScrollY(currentScrollY);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
   const faqs = [
     {
@@ -232,6 +251,8 @@ export default function App() {
             alt="KryptoKompass Dashboard" 
             className="w-full md:w-4/5 lg:w-2/3 xl:w-3/5 h-full object-contain object-right transform scale-[1.65] lg:scale-150 origin-right"
             referrerPolicy="no-referrer"
+            loading="eager"
+            fetchPriority="high"
           />
           {/* Gradients to ensure text readability without washing out the image */}
           <div className="absolute inset-0 bg-gradient-to-r from-bg-base via-bg-base/90 to-transparent w-full md:w-2/3"></div>
@@ -239,7 +260,7 @@ export default function App() {
         
         <div className="max-w-7xl mx-auto w-full px-6 relative z-10 flex flex-col items-start text-left">
           <FadeIn blur className="mb-8">
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-border-subtle bg-white/80 backdrop-blur-md shadow-sm">
+              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-border-subtle bg-white/90 shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
                 <span className="micro-label text-text-primary">Systematische Krypto-Ausbildung</span>
               </div>
@@ -263,7 +284,7 @@ export default function App() {
               <a href="#start" className="w-full sm:w-auto bg-brand-primary text-white px-8 py-4 rounded-full text-base font-semibold hover:bg-brand-secondary transition-all duration-300 text-center shadow-lg hover:shadow-xl hover:-translate-y-0.5">
                 Systemzugang anfragen
               </a>
-              <a href="#system" className="w-full sm:w-auto bg-white/80 backdrop-blur-md text-text-primary border border-border-strong px-8 py-4 rounded-full text-base font-medium hover:border-text-primary transition-all duration-300 text-center">
+              <a href="#system" className="w-full sm:w-auto bg-white/90 text-text-primary border border-border-strong px-8 py-4 rounded-full text-base font-medium hover:border-text-primary transition-all duration-300 text-center">
                 Architektur ansehen
               </a>
             </FadeIn>
@@ -272,7 +293,7 @@ export default function App() {
               <div className="flex -space-x-3">
                 {[1,2,3].map(i => (
                   <div key={i} className="w-10 h-10 rounded-full border-2 border-bg-base bg-bg-surface overflow-hidden shadow-sm">
-                    <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="Member" referrerPolicy="no-referrer" />
+                    <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="Member" referrerPolicy="no-referrer" loading="lazy" />
                   </div>
                 ))}
               </div>
@@ -336,11 +357,11 @@ export default function App() {
             
             <div className="relative">
               <FadeIn delay={0.2} scale blur className="glass-panel rounded-3xl overflow-hidden aspect-[4/3] relative">
-                <img src="https://images.unsplash.com/photo-1642104704074-907c0698cbd9?q=80&w=1200&auto=format&fit=crop" alt="Data Analysis" className="w-full h-full object-cover opacity-80 mix-blend-multiply" referrerPolicy="no-referrer" />
+                <img src="https://images.unsplash.com/photo-1642104704074-907c0698cbd9?q=80&w=1200&auto=format&fit=crop" alt="Data Analysis" className="w-full h-full object-cover opacity-80 mix-blend-multiply" referrerPolicy="no-referrer" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-bg-base via-transparent to-transparent"></div>
                 
                 {/* Overlay UI Element */}
-                <div className="absolute bottom-6 left-6 right-6 glass-panel rounded-xl p-4 flex items-center justify-between bg-white/80">
+                <div className="absolute bottom-6 left-6 right-6 glass-panel rounded-xl p-4 flex items-center justify-between bg-white/90">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-lg bg-bg-elevated flex items-center justify-center border border-border-subtle">
                       <BarChart3 size={20} className="text-text-primary" />
@@ -475,7 +496,7 @@ export default function App() {
       {/* CTA Section */}
       <section id="start" className="py-24 md:py-40 px-6 relative overflow-hidden">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-brand-primary/10 rounded-full blur-[150px]"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] rounded-full" style={{ background: 'radial-gradient(circle, rgba(243, 112, 33, 0.15) 0%, rgba(243, 112, 33, 0) 70%)' }}></div>
         </div>
 
         <div className="max-w-4xl mx-auto relative z-10 text-center glass-panel p-12 md:p-20 rounded-[3rem] border border-border-strong bg-white/80 shadow-xl">
