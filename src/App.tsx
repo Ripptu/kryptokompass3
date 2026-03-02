@@ -275,9 +275,31 @@ export default function App() {
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <p className="text-lg md:text-xl text-text-secondary font-light leading-relaxed mb-10 max-w-2xl">
-                Erst Krypto lernen und verstehen dann investieren und profitieren Kein Coaching ! Kein Investment ! Kein Scam ! Du hast die komplette Kontrolle ! Wir sind eine Community für Krypto Einsteiger und Neulinge. Lerne von Profis und tausche dich aus mit unseren Schülern . Gemeinsam zu erfolgreichen Krypto Wissen durch klare Navigation durch den Kryptodschungel
-              </p>
+              <div className="text-lg md:text-xl text-text-secondary font-light leading-relaxed mb-10 max-w-2xl space-y-6">
+                <p className="text-xl md:text-2xl text-text-primary font-medium">
+                  Erst Krypto lernen und verstehen, <br className="hidden sm:block" />
+                  dann investieren und profitieren.
+                </p>
+                
+                <p>
+                  Wir sind eine Community für Krypto-Einsteiger und Neulinge. Lerne von Profis und tausche dich mit unseren Schülern aus. Gemeinsam zu erfolgreichem Krypto-Wissen durch klare Navigation durch den Krypto-Dschungel.
+                </p>
+
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-bg-surface border border-border-strong text-sm font-medium text-text-primary shadow-sm">
+                    <X size={14} className="text-brand-primary" /> Kein Coaching
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-bg-surface border border-border-strong text-sm font-medium text-text-primary shadow-sm">
+                    <X size={14} className="text-brand-primary" /> Kein Investment
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-bg-surface border border-border-strong text-sm font-medium text-text-primary shadow-sm">
+                    <X size={14} className="text-brand-primary" /> Kein Scam
+                  </span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-brand-primary/10 border border-brand-primary/20 text-sm font-medium text-brand-primary shadow-sm">
+                    Du hast die komplette Kontrolle
+                  </span>
+                </div>
+              </div>
             </FadeIn>
 
             <FadeIn delay={0.3} className="flex flex-col sm:flex-row items-center justify-start gap-4 w-full sm:w-auto">
