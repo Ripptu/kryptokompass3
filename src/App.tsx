@@ -276,7 +276,7 @@ export default function App() {
 
             <FadeIn delay={0.2}>
               <p className="text-lg md:text-xl text-text-secondary font-light leading-relaxed mb-10 max-w-2xl">
-                Der Kryptomarkt bestraft Emotionen und belohnt Systeme. Wir liefern dir die Architektur, die Analysen und das Netzwerk, um <strong className="text-text-primary font-medium">datenbasierte Entscheidungen</strong> zu treffen.
+                Erst Krypto lernen und verstehen dann investieren und profitieren Kein Coaching ! Kein Investment ! Kein Scam ! Du hast die komplette Kontrolle ! Wir sind eine Community für Krypto Einsteiger und Neulinge. Lerne von Profis und tausche dich aus mit unseren Schülern . Gemeinsam zu erfolgreichen Krypto Wissen durch klare Navigation durch den Kryptodschungel
               </p>
             </FadeIn>
 
@@ -305,25 +305,7 @@ export default function App() {
           </div>
       </section>
 
-      {/* Trust Bar (Technical) */}
-      <section className="py-8 border-y border-border-subtle bg-bg-surface/50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-col sm:flex-row flex-wrap justify-between items-center gap-8">
-            <FadeIn direction="right" className="flex items-center gap-3">
-              <span className="text-brand-primary font-mono text-lg">01</span>
-              <span className="micro-label text-text-primary">Kein Coaching-Zirkus</span>
-            </FadeIn>
-            <FadeIn direction="right" delay={0.1} className="flex items-center gap-3">
-              <span className="text-brand-primary font-mono text-lg">02</span>
-              <span className="micro-label text-text-primary">Keine Investmentannahme</span>
-            </FadeIn>
-            <FadeIn direction="right" delay={0.2} className="flex items-center gap-3">
-              <span className="text-brand-primary font-mono text-lg">03</span>
-              <span className="micro-label text-text-primary">100% Eigenverantwortung</span>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
+
 
       {/* The System Section */}
       <section id="system" className="py-24 md:py-32 relative px-6">
