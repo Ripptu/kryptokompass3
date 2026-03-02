@@ -11,7 +11,9 @@ import {
   Instagram,
   Twitter,
   Youtube,
-  ChevronDown
+  ChevronDown,
+  Check,
+  Shield
 } from 'lucide-react';
 
 const FadeIn = ({ children, delay = 0, className = "", direction = "up", scale = false, blur = false }: any) => {
@@ -259,13 +261,6 @@ export default function App() {
         </div>
         
         <div className="max-w-7xl mx-auto w-full px-6 relative z-10 flex flex-col items-start text-left">
-          <FadeIn blur className="mb-8">
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-border-subtle bg-white/90 shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
-                <span className="micro-label text-text-primary">Systematische Krypto-Ausbildung</span>
-              </div>
-            </FadeIn>
-            
             <FadeIn blur delay={0.1}>
               <h1 className="text-5xl sm:text-6xl md:text-7xl font-medium tracking-tight leading-[1.05] mb-8 text-text-primary max-w-3xl">
                 Die Nummer 1 <br />
@@ -275,29 +270,48 @@ export default function App() {
             </FadeIn>
 
             <FadeIn delay={0.2}>
-              <div className="text-lg md:text-xl text-text-secondary font-light leading-relaxed mb-10 max-w-2xl space-y-6">
-                <p className="text-xl md:text-2xl text-text-primary font-medium">
-                  Erst Krypto lernen und verstehen, <br className="hidden sm:block" />
-                  dann investieren und profitieren.
-                </p>
-                
-                <p>
-                  Wir sind eine Community für Krypto-Einsteiger und Neulinge. Lerne von Profis und tausche dich mit unseren Schülern aus. Gemeinsam zu erfolgreichem Krypto-Wissen durch klare Navigation durch den Krypto-Dschungel.
-                </p>
+              <div className="mb-10 max-w-2xl w-full">
+                <div className="mb-8">
+                  <h3 className="text-xl md:text-2xl text-text-primary font-medium mb-4 leading-snug">
+                    Erst Krypto lernen und verstehen, <br className="hidden sm:block" />
+                    <span className="text-brand-primary">dann investieren und profitieren.</span>
+                  </h3>
+                  <p className="text-base md:text-lg text-text-secondary leading-relaxed mb-5">
+                    Wir sind eine Community für Krypto-Einsteiger und Neulinge.
+                  </p>
+                  <ul className="space-y-4">
+                    <li className="flex items-start gap-3 text-text-secondary">
+                      <div className="mt-1 w-5 h-5 rounded-full bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Check size={12} className="text-brand-primary" />
+                      </div>
+                      <span className="text-base">Lerne von Profis und tausche dich aus mit unseren Schülern.</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-text-secondary">
+                      <div className="mt-1 w-5 h-5 rounded-full bg-brand-primary/10 flex items-center justify-center flex-shrink-0">
+                        <Check size={12} className="text-brand-primary" />
+                      </div>
+                      <span className="text-base">Gemeinsam zu erfolgreichem Krypto-Wissen durch klare Navigation durch den Krypto-Dschungel.</span>
+                    </li>
+                  </ul>
+                </div>
 
-                <div className="flex flex-wrap items-center gap-3 pt-2">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-bg-surface border border-border-strong text-sm font-medium text-text-primary shadow-sm">
-                    <X size={14} className="text-brand-primary" /> Kein Coaching
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-bg-surface border border-border-strong text-sm font-medium text-text-primary shadow-sm">
-                    <X size={14} className="text-brand-primary" /> Kein Investment
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-bg-surface border border-border-strong text-sm font-medium text-text-primary shadow-sm">
-                    <X size={14} className="text-brand-primary" /> Kein Scam
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-brand-primary/10 border border-brand-primary/20 text-sm font-medium text-brand-primary shadow-sm">
+                <div className="flex flex-wrap gap-3">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-surface border border-border-strong text-sm font-medium text-text-primary shadow-sm">
+                    <div className="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center"><X size={12} className="text-red-500" /></div>
+                    Kein Coaching
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-surface border border-border-strong text-sm font-medium text-text-primary shadow-sm">
+                    <div className="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center"><X size={12} className="text-red-500" /></div>
+                    Kein Investment
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-surface border border-border-strong text-sm font-medium text-text-primary shadow-sm">
+                    <div className="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center"><X size={12} className="text-red-500" /></div>
+                    Kein Scam
+                  </div>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-sm font-medium text-brand-primary shadow-sm">
+                    <div className="w-5 h-5 rounded-full bg-brand-primary/20 flex items-center justify-center"><Shield size={12} className="text-brand-primary" /></div>
                     Du hast die komplette Kontrolle
-                  </span>
+                  </div>
                 </div>
               </div>
             </FadeIn>
