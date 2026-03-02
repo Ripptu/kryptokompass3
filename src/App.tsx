@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useMotionValue, useTransform, useSpring } from 'motion/react';
+import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from 'motion/react';
 import { 
   BarChart3, 
   BrainCircuit, 
@@ -157,6 +157,7 @@ export default function App() {
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollYRef = useRef(0);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [isArchitecturePopupOpen, setIsArchitecturePopupOpen] = useState(false);
 
   useEffect(() => {
     let ticking = false;
@@ -295,34 +296,42 @@ export default function App() {
                   </ul>
                 </div>
 
-                <div className="flex flex-wrap gap-3">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-surface border border-border-strong text-sm font-medium text-text-primary shadow-sm">
-                    <div className="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center"><X size={12} className="text-red-500" /></div>
-                    Kein Coaching
+                <div className="flex flex-col gap-3">
+                  <div className="flex flex-wrap gap-3">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-surface border border-border-strong text-sm font-medium text-text-primary shadow-sm">
+                      <div className="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center"><X size={12} className="text-red-500" /></div>
+                      Kein Coaching
+                    </div>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-surface border border-border-strong text-sm font-medium text-text-primary shadow-sm">
+                      <div className="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center"><X size={12} className="text-red-500" /></div>
+                      Kein Investment
+                    </div>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-surface border border-border-strong text-sm font-medium text-text-primary shadow-sm">
+                      <div className="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center"><X size={12} className="text-red-500" /></div>
+                      Kein Scam
+                    </div>
                   </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-surface border border-border-strong text-sm font-medium text-text-primary shadow-sm">
-                    <div className="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center"><X size={12} className="text-red-500" /></div>
-                    Kein Investment
-                  </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bg-surface border border-border-strong text-sm font-medium text-text-primary shadow-sm">
-                    <div className="w-5 h-5 rounded-full bg-red-500/10 flex items-center justify-center"><X size={12} className="text-red-500" /></div>
-                    Kein Scam
-                  </div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-sm font-medium text-brand-primary shadow-sm">
-                    <div className="w-5 h-5 rounded-full bg-brand-primary/20 flex items-center justify-center"><Shield size={12} className="text-brand-primary" /></div>
-                    Du hast die komplette Kontrolle
+                  <div className="flex flex-wrap gap-3 mt-1">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-sm font-medium text-emerald-600 shadow-sm">
+                      <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center"><Check size={12} className="text-emerald-600" /></div>
+                      KryptoKompass ist eine Kryptoschule & Community
+                    </div>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-sm font-medium text-brand-primary shadow-sm">
+                      <div className="w-5 h-5 rounded-full bg-brand-primary/20 flex items-center justify-center"><Shield size={12} className="text-brand-primary" /></div>
+                      Du hast die komplette Kontrolle
+                    </div>
                   </div>
                 </div>
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.3} className="flex flex-col sm:flex-row items-center justify-start gap-4 w-full sm:w-auto">
+            <FadeIn delay={0.3} className="flex flex-col sm:flex-row items-center justify-start gap-4 w-full sm:w-auto mt-8">
               <a href="#start" className="w-full sm:w-auto bg-brand-primary text-white px-8 py-4 rounded-full text-base font-semibold hover:bg-brand-secondary transition-all duration-300 text-center shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-                Systemzugang anfragen
+                Kostenlose Einschulung starten
               </a>
-              <a href="#system" className="w-full sm:w-auto bg-white/90 text-text-primary border border-border-strong px-8 py-4 rounded-full text-base font-medium hover:border-text-primary transition-all duration-300 text-center">
+              <button onClick={() => setIsArchitecturePopupOpen(true)} className="w-full sm:w-auto bg-white/90 text-text-primary border border-border-strong px-8 py-4 rounded-full text-base font-medium hover:border-text-primary transition-all duration-300 text-center">
                 Architektur ansehen
-              </a>
+              </button>
             </FadeIn>
             
             <FadeIn delay={0.5} className="mt-12 flex items-center justify-start gap-6 border-t border-border-subtle pt-8 w-full max-w-md">
@@ -353,29 +362,28 @@ export default function App() {
                 Logik schlägt <span className="font-serif italic text-text-secondary">Emotion.</span>
               </h2>
               <div className="space-y-6 text-lg text-text-secondary font-light leading-relaxed">
+                <p className="font-medium text-text-primary">Bei uns stehst du im Fokus.</p>
                 <p>
-                  Die meisten Marktteilnehmer verlieren Geld, weil sie auf Hype und Emotionen reagieren. Wir implementieren ein System.
+                  Wir sind überzeugt, dass nachhaltiger Erfolg im Kryptobereich aus der richtigen Kombination von Wissen, klarer Strategie und mentaler Stärke entsteht.
                 </p>
                 <p>
-                  Lerne, wie du On-Chain-Daten liest, Marktzyklen verstehst und ein asymmetrisches Risiko-Rendite-Profil aufbaust. <strong className="text-text-primary font-medium">Keine graue Theorie, sondern anwendbare Architektur.</strong>
+                  Unser Ziel ist es, dich nicht einfach mit einzelnen Tools auszustatten, sondern dir ein ganzheitliches System zu vermitteln, das:
                 </p>
-              </div>
-              
-              <div className="mt-12 grid grid-cols-2 gap-6">
-                <div className="border-l border-brand-primary pl-4">
-                  <div className="text-3xl font-medium text-text-primary mb-1">100%</div>
-                  <div className="text-sm text-text-muted">Datenbasiert</div>
-                </div>
-                <div className="border-l border-border-strong pl-4">
-                  <div className="text-3xl font-medium text-text-primary mb-1">24/7</div>
-                  <div className="text-sm text-text-muted">Systemzugriff</div>
-                </div>
+                <ul className="space-y-2 list-disc pl-5">
+                  <li>dir hilft, Risiken im Kryptomarkt besser zu verstehen</li>
+                  <li>deine Entscheidungen fundierter und sicherer macht</li>
+                  <li>deine Möglichkeiten im Umgang mit digitalen Assets erweitert</li>
+                </ul>
+                <p>
+                  Und das ganz ohne leere Versprechen oder unrealistische Renditen —<br />
+                  sondern mit einem klaren, strukturierten Weg zu echtem Verständnis und selbstbestimmtem Handeln im Kryptobereich.
+                </p>
               </div>
             </FadeIn>
             
             <div className="relative">
               <FadeIn delay={0.2} scale blur className="glass-panel rounded-3xl overflow-hidden aspect-[4/3] relative">
-                <img src="https://images.unsplash.com/photo-1642104704074-907c0698cbd9?q=80&w=1200&auto=format&fit=crop" alt="Data Analysis" className="w-full h-full object-cover opacity-80 mix-blend-multiply" referrerPolicy="no-referrer" loading="lazy" />
+                <img src="https://s1.directupload.eu/images/260302/ae76asy8.png" alt="Data Analysis" className="w-full h-full object-cover opacity-80 mix-blend-multiply" referrerPolicy="no-referrer" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-bg-base via-transparent to-transparent"></div>
                 
                 {/* Overlay UI Element */}
@@ -394,6 +402,41 @@ export default function App() {
               </FadeIn>
             </div>
           </div>
+
+          <FadeIn direction="up" delay={0.4} className="mt-24 max-w-4xl mx-auto text-center">
+            <h3 className="text-3xl md:text-4xl font-medium text-text-primary mb-8">
+              Die Krypto Kompass Schule steht für Klarheit in einer Welt voller Unsicherheit.
+            </h3>
+            <div className="space-y-6 text-lg text-text-secondary font-light leading-relaxed">
+              <p>
+                Wir begleiten dich Schritt für Schritt durch die Grundlagen von Bitcoin, Blockchain und digitalen Vermögenswerten — mit einem strukturierten Ansatz, der dir hilft, den Kryptomarkt wirklich zu verstehen, statt ihm nur zu folgen.
+              </p>
+              <p>
+                Unser Fokus liegt nicht auf kurzfristigen Trends, sondern auf echtem Wissen und nachhaltiger Kompetenz.
+              </p>
+              <p className="text-xl font-medium text-text-primary py-4">
+                Denn langfristige Sicherheit entsteht nicht durch Hype —<br />
+                sondern durch Verständnis.
+              </p>
+              
+              <div className="bg-bg-surface border border-border-subtle rounded-2xl p-8 text-left max-w-2xl mx-auto my-8">
+                <p className="font-medium text-text-primary mb-4">Bei uns findest du:</p>
+                <ul className="space-y-3">
+                  <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-brand-primary"></div> Orientierung in einem komplexen Markt</li>
+                  <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-brand-primary"></div> Struktur statt Informationsflut</li>
+                  <li className="flex items-center gap-3"><div className="w-2 h-2 rounded-full bg-brand-primary"></div> Wissen, das dich unabhängig macht</li>
+                </ul>
+              </div>
+              
+              <p className="font-medium text-text-primary">
+                Keine schnellen Versprechen.<br />
+                Keine unrealistischen Erwartungen.
+              </p>
+              <p className="text-xl text-brand-primary font-medium mt-6">
+                Sondern ein klarer Weg zu fundierten Entscheidungen im Kryptobereich.
+              </p>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -594,6 +637,72 @@ export default function App() {
           <p>System Version 2.0.4</p>
         </div>
       </footer>
+
+      {/* Architecture Popup */}
+      <AnimatePresence>
+        {isArchitecturePopupOpen && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm" 
+              onClick={() => setIsArchitecturePopupOpen(false)}
+            ></motion.div>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative bg-bg-base rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-border-strong p-8 md:p-10"
+            >
+              <button 
+                onClick={() => setIsArchitecturePopupOpen(false)}
+                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-bg-surface border border-border-subtle flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-border-subtle transition-colors"
+              >
+                <X size={20} />
+              </button>
+              
+              <h3 className="text-3xl font-medium text-text-primary mb-2">Dein klarer Ausbildungsweg</h3>
+              <p className="text-text-secondary mb-8">Du entwickelst dich Schritt für Schritt, mit klarer Struktur statt Chaos.</p>
+              
+              <div className="space-y-8">
+                <div className="relative pl-8 border-l-2 border-brand-primary/30">
+                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-brand-primary border-4 border-bg-base"></div>
+                  <h4 className="text-xl font-medium text-brand-primary mb-4">Stufe 1 – Grundlagen</h4>
+                  <ul className="space-y-3">
+                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Was ist Bitcoin & Blockchain?</li>
+                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Wallets richtig nutzen</li>
+                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Börsen verstehen</li>
+                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Marktmechaniken</li>
+                  </ul>
+                </div>
+                
+                <div className="relative pl-8 border-l-2 border-brand-primary/30">
+                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-brand-primary border-4 border-bg-base"></div>
+                  <h4 className="text-xl font-medium text-brand-primary mb-4">Stufe 2 – Strategie</h4>
+                  <ul className="space-y-3">
+                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Chart-Lesen & Marktzyklen</li>
+                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Support & Resistance</li>
+                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Risk-Management</li>
+                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Emotionale Kontrolle</li>
+                  </ul>
+                </div>
+                
+                <div className="relative pl-8 border-l-2 border-transparent">
+                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-brand-primary border-4 border-bg-base"></div>
+                  <h4 className="text-xl font-medium text-brand-primary mb-4">Stufe 3 – Professionelles Niveau</h4>
+                  <ul className="space-y-3">
+                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Marktstruktur & Liquidität</li>
+                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Advanced Trading Strategien</li>
+                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Kapital-Management</li>
+                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Eigenständige Marktanalyse</li>
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
