@@ -13,7 +13,11 @@ import {
   Youtube,
   ChevronDown,
   Check,
-  Shield
+  Shield,
+  BookOpen,
+  TrendingUp,
+  ShieldCheck,
+  Award
 } from 'lucide-react';
 
 const FadeIn = ({ children, delay = 0, className = "", direction = "up", scale = false, blur = false }: any) => {
@@ -157,7 +161,6 @@ export default function App() {
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollYRef = useRef(0);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-  const [isArchitecturePopupOpen, setIsArchitecturePopupOpen] = useState(false);
 
   useEffect(() => {
     let ticking = false;
@@ -329,9 +332,6 @@ export default function App() {
               <a href="#start" className="w-full sm:w-auto bg-brand-primary text-white px-8 py-4 rounded-full text-base font-semibold hover:bg-brand-secondary transition-all duration-300 text-center shadow-lg hover:shadow-xl hover:-translate-y-0.5">
                 Kostenlose Einschulung starten
               </a>
-              <button onClick={() => setIsArchitecturePopupOpen(true)} className="w-full sm:w-auto bg-white/90 text-text-primary border border-border-strong px-8 py-4 rounded-full text-base font-medium hover:border-text-primary transition-all duration-300 text-center">
-                Architektur ansehen
-              </button>
             </FadeIn>
             
             <FadeIn delay={0.5} className="mt-12 flex items-center justify-start gap-6 border-t border-border-subtle pt-8 w-full max-w-md">
@@ -350,7 +350,87 @@ export default function App() {
           </div>
       </section>
 
+      {/* Architecture Section (Moved from Popup) */}
+      <section className="py-24 bg-bg-base relative border-b border-border-subtle overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <FadeIn blur className="text-center mb-16">
+            <span className="micro-label text-brand-primary mb-4 block">Architektur</span>
+            <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-text-primary mb-4">
+              Dein klarer <span className="font-serif italic text-text-secondary">Ausbildungsweg.</span>
+            </h2>
+            <p className="text-lg text-text-secondary max-w-2xl mx-auto">
+              Du entwickelst dich Schritt für Schritt, mit klarer Struktur statt Chaos. 
+              Vier aufeinander aufbauende Module für deinen Krypto-Erfolg.
+            </p>
+          </FadeIn>
 
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Card 1 */}
+            <FadeIn delay={0.1} direction="up" className="bg-bg-surface border border-border-subtle p-8 rounded-[2rem] hover:border-brand-primary/50 transition-all duration-500 group relative overflow-hidden shadow-sm hover:shadow-xl">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-primary/5 rounded-full blur-3xl group-hover:bg-brand-primary/20 transition-all duration-500"></div>
+              <div className="w-14 h-14 rounded-2xl bg-bg-elevated border border-border-strong flex items-center justify-center mb-8 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 shadow-sm relative z-10">
+                <BookOpen className="w-6 h-6 text-brand-primary" />
+              </div>
+              <h3 className="text-xl font-medium text-text-primary mb-2 relative z-10">1. Grundlagen</h3>
+              <p className="text-sm text-text-secondary mb-6 h-10 relative z-10">Das Fundament für deinen sicheren Start in die Kryptowelt.</p>
+              <ul className="space-y-3 relative z-10">
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Bitcoin & Blockchain</li>
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Wallets richtig nutzen</li>
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Börsen verstehen</li>
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Marktmechaniken</li>
+              </ul>
+            </FadeIn>
+
+            {/* Card 2 */}
+            <FadeIn delay={0.2} direction="up" className="bg-bg-surface border border-border-subtle p-8 rounded-[2rem] hover:border-brand-primary/50 transition-all duration-500 group relative overflow-hidden shadow-sm hover:shadow-xl">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-primary/5 rounded-full blur-3xl group-hover:bg-brand-primary/20 transition-all duration-500"></div>
+              <div className="w-14 h-14 rounded-2xl bg-bg-elevated border border-border-strong flex items-center justify-center mb-8 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 shadow-sm relative z-10">
+                <TrendingUp className="w-6 h-6 text-brand-primary" />
+              </div>
+              <h3 className="text-xl font-medium text-text-primary mb-2 relative z-10">2. Strategie</h3>
+              <p className="text-sm text-text-secondary mb-6 h-10 relative z-10">Lerne den Markt zu lesen und Muster zu erkennen.</p>
+              <ul className="space-y-3 relative z-10">
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Chart-Lesen & Zyklen</li>
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Support & Resistance</li>
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Marktstruktur</li>
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Liquidität verstehen</li>
+              </ul>
+            </FadeIn>
+
+            {/* Card 3 */}
+            <FadeIn delay={0.3} direction="up" className="bg-bg-surface border border-border-subtle p-8 rounded-[2rem] hover:border-brand-primary/50 transition-all duration-500 group relative overflow-hidden shadow-sm hover:shadow-xl">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-primary/5 rounded-full blur-3xl group-hover:bg-brand-primary/20 transition-all duration-500"></div>
+              <div className="w-14 h-14 rounded-2xl bg-bg-elevated border border-border-strong flex items-center justify-center mb-8 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 shadow-sm relative z-10">
+                <ShieldCheck className="w-6 h-6 text-brand-primary" />
+              </div>
+              <h3 className="text-xl font-medium text-text-primary mb-2 relative z-10">3. Sicherheit</h3>
+              <p className="text-sm text-text-secondary mb-6 h-10 relative z-10">Kapitalerhalt durch striktes Risiko- und Mindset-Management.</p>
+              <ul className="space-y-3 relative z-10">
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Risk-Management</li>
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Emotionale Kontrolle</li>
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Kapital-Management</li>
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Positionsgrößen</li>
+              </ul>
+            </FadeIn>
+
+            {/* Card 4 */}
+            <FadeIn delay={0.4} direction="up" className="bg-bg-surface border border-border-subtle p-8 rounded-[2rem] hover:border-brand-primary/50 transition-all duration-500 group relative overflow-hidden shadow-sm hover:shadow-xl">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-primary/5 rounded-full blur-3xl group-hover:bg-brand-primary/20 transition-all duration-500"></div>
+              <div className="w-14 h-14 rounded-2xl bg-bg-elevated border border-border-strong flex items-center justify-center mb-8 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500 shadow-sm relative z-10">
+                <Award className="w-6 h-6 text-brand-primary" />
+              </div>
+              <h3 className="text-xl font-medium text-text-primary mb-2 relative z-10">4. Meisterschaft</h3>
+              <p className="text-sm text-text-secondary mb-6 h-10 relative z-10">Werde zum unabhängigen Architekten deines Portfolios.</p>
+              <ul className="space-y-3 relative z-10">
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Advanced Strategien</li>
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Eigenständige Analyse</li>
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Portfolio-Aufbau</li>
+                <li className="flex items-center gap-3 text-sm text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-brand-primary/50"></div> Elite Netzwerk</li>
+              </ul>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
 
       {/* The System Section */}
       <section id="system" className="py-24 md:py-32 relative px-6">
@@ -638,71 +718,6 @@ export default function App() {
         </div>
       </footer>
 
-      {/* Architecture Popup */}
-      <AnimatePresence>
-        {isArchitecturePopupOpen && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-black/60 backdrop-blur-sm" 
-              onClick={() => setIsArchitecturePopupOpen(false)}
-            ></motion.div>
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative bg-bg-base rounded-3xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto border border-border-strong p-8 md:p-10"
-            >
-              <button 
-                onClick={() => setIsArchitecturePopupOpen(false)}
-                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-bg-surface border border-border-subtle flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-border-subtle transition-colors"
-              >
-                <X size={20} />
-              </button>
-              
-              <h3 className="text-3xl font-medium text-text-primary mb-2">Dein klarer Ausbildungsweg</h3>
-              <p className="text-text-secondary mb-8">Du entwickelst dich Schritt für Schritt, mit klarer Struktur statt Chaos.</p>
-              
-              <div className="space-y-8">
-                <div className="relative pl-8 border-l-2 border-brand-primary/30">
-                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-brand-primary border-4 border-bg-base"></div>
-                  <h4 className="text-xl font-medium text-brand-primary mb-4">Stufe 1 – Grundlagen</h4>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Was ist Bitcoin & Blockchain?</li>
-                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Wallets richtig nutzen</li>
-                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Börsen verstehen</li>
-                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Marktmechaniken</li>
-                  </ul>
-                </div>
-                
-                <div className="relative pl-8 border-l-2 border-brand-primary/30">
-                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-brand-primary border-4 border-bg-base"></div>
-                  <h4 className="text-xl font-medium text-brand-primary mb-4">Stufe 2 – Strategie</h4>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Chart-Lesen & Marktzyklen</li>
-                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Support & Resistance</li>
-                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Risk-Management</li>
-                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Emotionale Kontrolle</li>
-                  </ul>
-                </div>
-                
-                <div className="relative pl-8 border-l-2 border-transparent">
-                  <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-brand-primary border-4 border-bg-base"></div>
-                  <h4 className="text-xl font-medium text-brand-primary mb-4">Stufe 3 – Professionelles Niveau</h4>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Marktstruktur & Liquidität</li>
-                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Advanced Trading Strategien</li>
-                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Kapital-Management</li>
-                    <li className="flex items-center gap-3 text-text-secondary"><div className="w-1.5 h-1.5 rounded-full bg-text-muted"></div> Eigenständige Marktanalyse</li>
-                  </ul>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
