@@ -807,9 +807,18 @@ export default function App() {
             </ul>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-border-subtle flex flex-col md:flex-row justify-between items-center gap-4 text-text-muted text-xs font-mono">
-          <p>&copy; {new Date().getFullYear()} KryptoKompass. All rights reserved.</p>
-          <p>System Version 2.0.4</p>
+        <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-border-subtle">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-text-muted text-xs font-mono mb-8">
+            <p>&copy; {new Date().getFullYear()} KryptoKompass. All rights reserved.</p>
+            <p>System Version 2.0.4</p>
+          </div>
+          <div className="text-center">
+            <a href="http://vamela.info" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-text-secondary hover:text-brand-primary transition-colors font-medium">
+              <span>Website designed by</span>
+              <span className="font-bold text-text-primary">VAMELA</span>
+              <span className="text-brand-primary">→</span>
+            </a>
+          </div>
         </div>
       </footer>
 
