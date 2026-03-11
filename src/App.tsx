@@ -6,6 +6,7 @@ import {
   PlaySquare, 
   Users, 
   ArrowRight,
+  ArrowLeft,
   Menu,
   X,
   Instagram,
@@ -155,7 +156,83 @@ const AccordionItem = ({ question, answer, isOpen, onClick }: { question: string
   );
 };
 
+const impressumContent = (
+  <>
+    <h2 className="text-2xl font-medium text-text-primary mt-8 mb-4">Angaben gemäß § 5 TMG</h2>
+    <p>Max Mustermann<br />Musterstraße 1<br />12345 Musterstadt</p>
+    <h2 className="text-2xl font-medium text-text-primary mt-8 mb-4">Kontakt</h2>
+    <p>Telefon: +49 (0) 123 44 55 66<br />E-Mail: info@musterstadt.de</p>
+    <h2 className="text-2xl font-medium text-text-primary mt-8 mb-4">Umsatzsteuer-ID</h2>
+    <p>Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br />DE999999999</p>
+  </>
+);
+
+const datenschutzContent = (
+  <>
+    <h2 className="text-2xl font-medium text-text-primary mt-8 mb-4">1. Datenschutz auf einen Blick</h2>
+    <h3 className="text-xl font-medium text-text-primary mt-6 mb-2">Allgemeine Hinweise</h3>
+    <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+    <h3 className="text-xl font-medium text-text-primary mt-6 mb-2">Datenerfassung auf dieser Website</h3>
+    <p>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur Verantwortlichen Stelle“ in dieser Datenschutzerklärung entnehmen.</p>
+  </>
+);
+
+const agbContent = (
+  <>
+    <h2 className="text-2xl font-medium text-text-primary mt-8 mb-4">1. Geltungsbereich</h2>
+    <p>Für alle Bestellungen über unseren Online-Shop durch Verbraucher und Unternehmer gelten die nachfolgenden AGB.</p>
+    <h2 className="text-2xl font-medium text-text-primary mt-8 mb-4">2. Vertragspartner, Vertragsschluss</h2>
+    <p>Der Kaufvertrag kommt zustande mit KryptoKompass. Die Darstellung der Produkte im Online-Shop stellt kein rechtlich bindendes Angebot, sondern einen unverbindlichen Online-Katalog dar.</p>
+    <h2 className="text-2xl font-medium text-text-primary mt-8 mb-4">3. Vertragssprache, Vertragstextspeicherung</h2>
+    <p>Die für den Vertragsschluss zur Verfügung stehende Sprache ist Deutsch. Wir speichern den Vertragstext und senden Ihnen die Bestelldaten und unsere AGB per E-Mail zu.</p>
+  </>
+);
+
+const risikohinweisContent = (
+  <>
+    <h2 className="text-2xl font-medium text-text-primary mt-8 mb-4">1. Allgemeine Risiken</h2>
+    <p>Der Handel mit Kryptowährungen birgt ein hohes Risiko und kann zum vollständigen Verlust Ihres eingesetzten Kapitals führen. Die bereitgestellten Informationen stellen keine Anlageberatung dar.</p>
+    <h2 className="text-2xl font-medium text-text-primary mt-8 mb-4">2. Keine Finanzberatung</h2>
+    <p>Alle Inhalte auf dieser Website dienen ausschließlich Informations- und Bildungszwecken. Sie sollten nicht als finanzielle, rechtliche oder steuerliche Beratung verstanden werden.</p>
+    <h2 className="text-2xl font-medium text-text-primary mt-8 mb-4">3. Volatilität</h2>
+    <p>Kryptowährungsmärkte sind extrem volatil. Preise können innerhalb kürzester Zeit stark schwanken. Investieren Sie nur Geld, dessen Verlust Sie sich leisten können.</p>
+  </>
+);
+
+const LegalPage = ({ title, content, onBack }: { title: string, content: React.ReactNode, onBack: () => void }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [title]);
+
+  return (
+    <div className="pt-32 pb-24 min-h-[70vh]">
+      <div className="max-w-4xl mx-auto px-6">
+        <FadeIn direction="down" className="mb-12">
+          <button 
+            onClick={(e) => { e.preventDefault(); onBack(); }}
+            className="inline-flex items-center gap-2 text-text-secondary hover:text-brand-primary transition-colors font-medium bg-bg-surface px-4 py-2 rounded-full border border-border-subtle shadow-sm hover:shadow-md"
+          >
+            <ArrowLeft size={16} />
+            Zurück zur Startseite
+          </button>
+        </FadeIn>
+        
+        <FadeIn blur>
+          <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-text-primary mb-12">
+            {title}
+          </h1>
+        </FadeIn>
+
+        <FadeIn delay={0.2} direction="up" className="space-y-6 text-lg text-text-secondary font-light leading-relaxed glass-panel p-8 md:p-12 rounded-3xl border border-border-subtle">
+          {content}
+        </FadeIn>
+      </div>
+    </div>
+  );
+};
+
 export default function App() {
+  const [currentPage, setCurrentPage] = useState<'home' | 'impressum' | 'datenschutz' | 'agb' | 'risikohinweis'>('home');
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -209,33 +286,41 @@ export default function App() {
   return (
     <div className="min-h-screen bg-bg-base text-text-primary font-sans overflow-x-hidden selection:bg-brand-primary/30 selection:text-white">
       {/* Navbar */}
-      <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${isVisible ? 'translate-y-0' : '-translate-y-full'} ${isScrolled ? 'bg-bg-base/80 backdrop-blur-xl py-4 shadow-sm' : 'bg-transparent py-6'}`}>
+      <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${isVisible || currentPage !== 'home' ? 'translate-y-0' : '-translate-y-full'} ${(isScrolled || currentPage !== 'home') ? 'bg-bg-base/80 backdrop-blur-xl py-4 shadow-sm' : 'bg-transparent py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-          <div className="flex items-center gap-2 cursor-pointer">
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => setCurrentPage('home')}>
             <span className="font-bold text-xl tracking-tight text-text-primary">Krypto<span className="text-brand-primary">Kompass</span></span>
           </div>
           
-          <nav className="hidden md:flex items-center gap-8 font-medium text-sm text-text-secondary">
-            <a href="#system" className="hover:text-brand-primary transition-colors">System</a>
-            <a href="#features" className="hover:text-brand-primary transition-colors">Architektur</a>
-            <a href="#faq" className="hover:text-brand-primary transition-colors">FAQ</a>
-          </nav>
+          {currentPage === 'home' ? (
+            <>
+              <nav className="hidden md:flex items-center gap-8 font-medium text-sm text-text-secondary">
+                <a href="#system" className="hover:text-brand-primary transition-colors">System</a>
+                <a href="#features" className="hover:text-brand-primary transition-colors">Architektur</a>
+                <a href="#faq" className="hover:text-brand-primary transition-colors">FAQ</a>
+              </nav>
 
-          <div className="hidden md:flex items-center gap-6">
-            <a href="#login" className="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Digitales Klassenzimmer</a>
-            <a href="#start" className="bg-text-primary text-bg-base px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-text-secondary transition-all duration-300 shadow-md hover:shadow-lg">
-              Zugang anfragen
-            </a>
-          </div>
+              <div className="hidden md:flex items-center gap-6">
+                <a href="#login" className="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Digitales Klassenzimmer</a>
+                <a href="#start" className="bg-text-primary text-bg-base px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-text-secondary transition-all duration-300 shadow-md hover:shadow-lg">
+                  Zugang anfragen
+                </a>
+              </div>
 
-          <button className="md:hidden text-text-primary" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X /> : <Menu />}
-          </button>
+              <button className="md:hidden text-text-primary" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                {mobileMenuOpen ? <X /> : <Menu />}
+              </button>
+            </>
+          ) : (
+            <div className="hidden md:flex items-center gap-6">
+              <button onClick={() => setCurrentPage('home')} className="text-sm font-medium text-text-secondary hover:text-brand-primary transition-colors">Zurück zur Startseite</button>
+            </div>
+          )}
         </div>
       </header>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
+      {mobileMenuOpen && currentPage === 'home' && (
         <div className="fixed inset-0 z-40 bg-bg-base pt-24 px-6 md:hidden border-b border-border-subtle">
           <nav className="flex flex-col gap-6 text-lg font-medium">
             <a href="#system" onClick={() => setMobileMenuOpen(false)} className="text-text-secondary hover:text-brand-primary">System</a>
@@ -248,7 +333,9 @@ export default function App() {
         </div>
       )}
 
-      {/* Hero Section */}
+      {currentPage === 'home' ? (
+        <>
+          {/* Hero Section */}
       <section className="relative pt-32 pb-16 md:pt-40 md:pb-24 overflow-hidden min-h-[70vh] flex flex-col justify-center border-b border-border-subtle">
         {/* Hero Image as Background */}
         <div className="absolute inset-0 z-0 pointer-events-none flex justify-end opacity-30 md:opacity-100">
@@ -668,6 +755,14 @@ export default function App() {
           </FadeIn>
         </div>
       </section>
+      </>
+      ) : (
+        <LegalPage 
+          title={currentPage === 'impressum' ? 'Impressum' : currentPage === 'datenschutz' ? 'Datenschutzerklärung' : currentPage === 'agb' ? 'Allgemeine Geschäftsbedingungen' : 'Risikohinweis'} 
+          content={currentPage === 'impressum' ? impressumContent : currentPage === 'datenschutz' ? datenschutzContent : currentPage === 'agb' ? agbContent : risikohinweisContent} 
+          onBack={() => setCurrentPage('home')} 
+        />
+      )}
 
       {/* Footer */}
       <footer className="bg-bg-surface border-t border-border-subtle py-16 px-6">
@@ -705,10 +800,10 @@ export default function App() {
           <div>
             <h4 className="font-medium mb-6 text-sm text-text-primary uppercase tracking-wider">Legal</h4>
             <ul className="space-y-3 text-text-secondary text-sm">
-              <li><a href="#" className="hover:text-brand-primary transition-colors">Impressum</a></li>
-              <li><a href="#" className="hover:text-brand-primary transition-colors">Datenschutz</a></li>
-              <li><a href="#" className="hover:text-brand-primary transition-colors">AGB</a></li>
-              <li><a href="#" className="hover:text-brand-primary transition-colors">Risikohinweis</a></li>
+              <li><button onClick={() => setCurrentPage('impressum')} className="hover:text-brand-primary transition-colors text-left">Impressum</button></li>
+              <li><button onClick={() => setCurrentPage('datenschutz')} className="hover:text-brand-primary transition-colors text-left">Datenschutz</button></li>
+              <li><button onClick={() => setCurrentPage('agb')} className="hover:text-brand-primary transition-colors text-left">AGB</button></li>
+              <li><button onClick={() => setCurrentPage('risikohinweis')} className="hover:text-brand-primary transition-colors text-left">Risikohinweis</button></li>
             </ul>
           </div>
         </div>
